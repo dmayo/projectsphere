@@ -85,13 +85,16 @@ $mail->IsHTML(true); // send as HTML
 $mail->AddReplyTo("filemanagerdmas@gmail.com","Webmaster");
 
 if(!$mail->Send()) {
-  echo 'That Email address is not valid. 
-  <meta http-equiv="refresh" content="3;url=../admin.php">';
-} 
+   echo 'Message could not be sent.';
+    echo 'Mailer Error: ' . $mail->ErrorInfo;
+}
+else
+{
 
 	addLog($logPath,time(),"Administrator", $_POST['email'] . " has been successsfully invited");
 	echo "user successfully invited";
 	echo '<meta http-equiv="refresh" content="3;url=../admin.php">';
+	}
 }
 else
 {
