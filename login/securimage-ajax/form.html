@@ -1,0 +1,66 @@
+<html>
+<head>
+  <title>PHP Captcha with Ajax</title>
+  <script type="text/javascript" src="prototype.js"></script>
+
+  <script type="text/javascript">
+  <!--
+
+  function processForm()
+  {
+    $('submit').disabled = true;
+    $('submit').value = "Processing.  Please Wait...";
+
+    $('contact_form').request({
+      onSuccess: function(transport)
+      {
+        if(transport.responseText.match(/^OK/) != null) {
+          alert('Your message has been sent!');
+          $('contact_form').reset();
+        } else {
+          alert(transport.responseText);
+        }
+
+        $('submit').value = 'Send Message';
+        $('submit').disabled = false;
+      }
+    });
+
+    return false;
+  }
+
+  -->
+  </script>
+</head>
+
+<body>
+
+<form id="contact_form" action="process.php" method="post" onsubmit="return processForm()">
+  <div style="float: left; width: 100px">Your name:</div>
+  <div style="float: left"><input type="text" name="sender_name" size="20" /></div>
+  <div style="clear: both"></div>
+
+  <div style="float: left; width: 100px">Email:</div>
+  <div style="float: left"><input type="text" name="sender_email" size="30" /></div>
+  <div style="clear: both"></div>
+
+  <div style="float: left; width: 100px">Message:</div>
+  <div style="float: left"><textarea name="message" rows="4" cols="30"></textarea></div>
+  <div style="clear: both"></div>
+
+  <div style="float: left; width: 100px">Security Image:</div>
+  <div style="float: left"><img src="securimage/securimage_show.php" alt="CAPTCHA Image" /></div>
+  <div style="clear: both"></div>
+
+  <div style="float: left; width: 100px">Security Code:</div>
+  <div style="float: left"><input type="text" name="code" size="8" /></div>
+  <div style="clear: both"></div>
+
+  <div style="float: left; width: 100px">&nbsp;</div>
+  <div style="float: left"><input id="submit" type="submit" value="Send Message" /></div>
+  <div style="clear: both"></div>
+</form>
+
+
+</body>
+</html>

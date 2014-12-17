@@ -1,0 +1,4 @@
+AuthName "xampp user"
+AuthType Basic
+AuthUserFile "C:\xampp\htdocs\forbidden\.htpassword"
+require valid-user

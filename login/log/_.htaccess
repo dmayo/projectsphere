@@ -1,0 +1,4 @@
+AuthName "xampp user"
+AuthType Basic
+AuthUserFile "C:\xampp\htdocs\php_stuff\filemanager\.htpassword"
+require valid-user
