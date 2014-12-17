@@ -254,7 +254,7 @@ $ajax = new PHPLiveX(array("validate"));
 
 <html>  
     <head>
-        <title>PSet Checker</title>
+        <title>Project Sphere</title>
 		<link rel="shortcut icon" href="images/favicon.ico" />
         <link href="style.css" type="text/css" rel="stylesheet" />
 		<link type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
@@ -284,8 +284,8 @@ $ajax = new PHPLiveX(array("validate"));
         <div id="pr" align="right" style="visibility:hidden;"><img src="images/load.gif" border="0" height="16" width="16" /> Loading...</div>
         <form name="login">
 			<div class="ui-widget-content" id="loginbox" style="width:450px;height:350px;margin:0 auto;text-align:center;">
-			<h3 class="ui-widget-header" id="header">PSet Checker Login</h3>
-            <div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;">PSet Checker</div>
+			<h3 class="ui-widget-header" id="header">Project Sphere Login</h3>
+            <div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;">Project Sphere</div>
             <!--<div align="center" style="padding-bottom:12px;">David Mayo and Albert Shaw</div>-->
             <table border="0" align="center" cellspacing="0" cellpadding="5">
                 <tr>
