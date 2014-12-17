@@ -1,6 +1,6 @@
 <html>
 <head>
-        <title>File Manager Reset Password</title>
+        <title>Project Sphere Reset Password</title>
 		<link rel="shortcut icon" href="images/favicon.ico" />
         <link href="style.css" type="text/css" rel="stylesheet" />
 		<link type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
@@ -16,9 +16,8 @@
 <div id="pr" align="right" style="visibility:hidden;">Loading...</div>
 <form action="send_pass.php" method="post" >
 	<div class="ui-widget-content" id="loginbox" style="width:450px;height:350px;margin:0 auto;text-align:center;font-size:105%;">
-	<h3 class="ui-widget-header" id="header">File Manager Reset Password</h3>
-    <div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;"><img src="images/logo.png" border="0" height="70" width="257" /></div>
-	
+	<h3 class="ui-widget-header" id="header">Project Sphere Reset Password</h3>
+    <div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;">Project Sphere</div>	
 <table border="0" align="center" cellspacing="0" cellpadding="8">
     <tr>
 		<td colspan="2" align="center">Please enter you e-mail address to reset you password.</td>
