@@ -1,0 +1,15 @@
+Project Schema
+1.	id	
+3.	project_name
+4.	category
+5.	grade		(range or individual)
+6.	authors
+7.	school
+8. 	competition
+9.	year
+10.	description
+11.	photos
+12.	video_link
+13.	sources	(non student produced materials used in the project)
+14.	views
+15.	submission_date
