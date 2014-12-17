@@ -1,0 +1,51 @@
+<html>
+<head>
+	<script src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script>
+</head>
+<body>
+	<form action="submitProject.php" method="post">
+	<table>
+		<tr>
+			<td>Project Name:</td><td><input type="text" name="projectName" /></td>
+		</tr>
+		<tr>
+			<td>Category:</td><td><input type="text" name="category" /></td>
+		</tr>
+		<tr>
+			<td>Grade:</td><td><input type="text" name="grade" /></td>
+		</tr>
+		<tr>
+			<td>School:</td><td><input type="text" name="school" /></td>
+		</tr>
+		<tr>
+			<td>Competition:</td><td><input type="text" name="competition" /></td>
+		</tr>
+		<tr>
+			<td>Year:</td><td><input type="text" name="year" /></td>
+		</tr>
+		<tr>
+			<td>Video Link:</td><td><input type="text" name="video_link" /></td>
+		</tr>
+		
+	
+		
+	
+	</table>
+	
+		Description:<br />
+		<textarea name="description"></textarea>
+		<br /><br />
+		Sources:<br /><textarea name="sources"></textarea>
+		
+	<input type="submit"></input>
+	
+	</form>
+	
+	<script>
+		// Replace the <textarea id="editor1"> with a CKEditor
+		// instance, using default configuration.
+		CKEDITOR.replace( 'description' );
+		CKEDITOR.replace( 'sources' );
+	</script>
+</body>
+</html>
