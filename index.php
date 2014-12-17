@@ -29,7 +29,8 @@ else{
     <![endif]-->
   </head>
   <body>
-    Works!
+    Works!<br />
+    <a href="login/logout.php">logout</a>
   </body>
 </html>
 
