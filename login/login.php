@@ -184,15 +184,15 @@ function makeCookie($username,$remember) {
 	if($remember==1){
 	$ip=$_SERVER['REMOTE_ADDR'];
 		addLog($logPath,time(),ucwords(strtolower($username)),ucwords(strtolower($username)) . " has logged in, Stayed signed in: yes, IP: $ip");
-		setcookie("upload_user", $username, time()+60*60*24*365*10);
-		setcookie("user_code", $usercode, time()+60*60*24*365*10);  
-		setcookie("remember", "1", time()+60*60*24*365*10);  
+		setcookie("upload_user", $username, time()+60*60*24*365*10, '/');
+		setcookie("user_code", $usercode, time()+60*60*24*365*10, '/');  
+		setcookie("remember", "1", time()+60*60*24*365*10, '/');  
 	}
 	else{
 	$ip=$_SERVER['REMOTE_ADDR'];
 		addLog($logPath,time(),ucwords(strtolower($username)),ucwords(strtolower($username)) . " has logged in, Stayed signed in: no, IP: $ip");
-		setcookie("upload_user", $username, time()+3600);  //expire in 1 hour
-		setcookie("user_code", $usercode, time()+3600);    //expire in 1 hour
+		setcookie("upload_user", $username, time()+3600, '/');  //expire in 1 hour
+		setcookie("user_code", $usercode, time()+3600, '/');    //expire in 1 hour
 	}
 }
 

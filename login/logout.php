@@ -9,7 +9,7 @@ if(checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["u
 }
 else{
 addLog($logPath,time(),ucwords(strtolower($_COOKIE["upload_user"])),ucwords(strtolower($_COOKIE["upload_user"]))." has logged out");
-    if(setcookie("upload_user", "", time()-3600)&&setcookie("user_code", "", time()-3600)){
+    if(setcookie("upload_user", "", time()-3600, '/')&&setcookie("user_code", "", time()-3600, '/')){
         echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"><//head>';
         echo '<meta http-equiv="refresh" content="0;url=login.php">';
     }
