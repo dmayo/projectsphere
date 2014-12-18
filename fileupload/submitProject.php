@@ -13,7 +13,7 @@
 	$description = $_POST['description'];
 	$sources = $_POST['sources'];
 	
-	$photos = ",1,";
+	$photos = $_POST['photos'];
 	$authors = ",1,";
 	
 	$sql = 'INSERT INTO projects (project_name, category, grade, 
