@@ -46,7 +46,7 @@ class UploadHandler
     function __construct($options = null, $initialize = true, $error_messages = null) {
         $this->response = array();
         $this->options = array(
-            'script_url' => $this->get_full_url().'/',
+            'script_url' => 'photoupload.php',
             'upload_dir' => $GLOBALS['config_image_file_path'],
             'upload_url' => $GLOBALS['config_url'].$GLOBALS['config_image_path'],
             'user_dirs' => false,
