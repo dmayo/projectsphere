@@ -1,15 +1,7 @@
 <?php
+	require_once "database/pdo.php";
 
-	$dsn = 'mysql:host=localhost;dbname=project_sphere';
-	$user = 'root';
-	$password = 'school';
-	try {
-		$pdo = new PDO($dsn, $user, $password);
-		$pdo ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	}
-	catch (PDOException $e) {
-		echo 'Connection failed: ' . $e->getMessage();
-	}
+	$pdo = getPDO();
 	
 	$projectName = $_POST['projectName'];
 	$category = $_POST['category'];
