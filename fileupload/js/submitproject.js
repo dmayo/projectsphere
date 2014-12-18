@@ -15,7 +15,7 @@ $(function () {
     'use strict';
 	
 	//reset hidden form
-	$('#imageinput').val(";");
+	$('#imageinput').val("<");
     // Initialize the jQuery File Upload widget:
     $('#fileupload').fileupload({
         // Uncomment the following to send cross-domain cookies:
@@ -38,9 +38,9 @@ $(function () {
 		for (var i = 0; i < files.length; ++i) {
 			
 			$('#imageinput').val( function( index, val ) {
-				return val + files[i].id + ";";
+				return val + files[i].url + "<";
 			});
-			console.log(files[i].id);
+			console.log(files[i]);
 		}
 	}
 	var onDeleted = function (e, data) {

@@ -1085,7 +1085,7 @@ class UploadHandler
             }
 			$pdo = getPDO();
 			
-			$sql = 'INSERT INTO '.$GLOBALS['config_photo_db'].' (path) value (:path)';
+			$sql = 'INSERT INTO photos (path) value (:path)';
 			$path = $GLOBALS['config_image_path'].$file->name;
 			$query = $pdo->prepare($sql);
 			$exe = array('path'=>$path);
