@@ -1,3 +1,6 @@
 login/config/config.php
 login/log/log.log
 *.DS_Store
+img
+config/config.php
+fileupload/config/config.php
