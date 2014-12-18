@@ -279,55 +279,129 @@ $ajax = new PHPLiveX(array("validate"));
                 validate(username, password, remember, {"method":"POST",'target':'msg','preloader':'pr'});
             }
         </script>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Project Sphere</title>
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="newlogin.css">
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
     </head>
     <body>
         <div id="pr" align="right" style="visibility:hidden;"><img src="images/load.gif" border="0" height="16" width="16" /> Loading...</div>
-        <form name="login">
-			<div class="ui-widget-content" id="loginbox" style="width:450px;height:350px;margin:0 auto;text-align:center;">
-			<h3 class="ui-widget-header" id="header">Project Sphere Login</h3>
-            <div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;">Project Sphere</div>
-            <!--<div align="center" style="padding-bottom:12px;">David Mayo and Albert Shaw</div>-->
-            <table border="0" align="center" cellspacing="0" cellpadding="5">
-                <tr>
-                    <td>
-                        User Name:
-                    </td>
-                    <td>
-                        <input type="text" id="username" maxlength="50">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Password:
-                    </td>
-                    <td>
-                        <input type="password" id="password" maxlength="50">
-                    </td>
-                </tr>
-				<tr>
-                    <td colspan="2" align="center" id="forgot">
-                        <a href="forgot.php">Forgot password?</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2" align="center">
-                        <input type="checkbox" id="remember" name="remember" />Stay signed in
-                    </td>
-                </tr>
-                <tr>
-                    <td align="center" colspan="2">
-                        <input type="submit" value="Login" onclick="test();return false;">
-                    </td>
-                </tr>
-            </table>
+        
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="account-wall">
+                <div id="my-tab-content" class="tab-content">
+                        <div class="tab-pane active" id="login">
+                        <span class="title"><h3><i class="glyphicon glyphicon-record"></i> Project Sphere</h3></span>
+                        <form class="form-signin" name="login">
+                            <input type="text" class="form-control" placeholder="Username" id="username" required autofocus>
+                            <input type="password" class="form-control" placeholder="Password" id="password" required>
+                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" onclick="test();return false;" />
+                            <div id="tabs" data-tabs="tabs">
+                                <p class="text-center"> Stay signed in <input type="checkbox" id="remember" name="remember" /></p>
+                                <p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
+                                <p class="text-center"><a href="forgot.php" data-toggle="tab">Forgot Password?</a></p>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="tab-pane" id="register">
+                            <form class="form-signin" action="" method="">
+                                <input type="text" class="form-control" placeholder="User Name ..." required autofocus>
+                                <input type="email" class="form-control" placeholder="Emaill Address ..." required>
+                                <input type="password" class="form-control" placeholder="Password ..." required>
+                                <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign Up" />
+                            </form>
+                            <div id="tabs" data-tabs="tabs">
+                        <p class="text-center"><a href="#login" data-toggle="tab">Have an Account?</a></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" id="select">
+                            <div id="tabs" data-tabs="tabs">
+                                <div class="media account-select">
+                                    <a href="#user1" data-toggle="tab">
+                                        <div class="pull-left">     
+                                            <img class="select-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                                        </div>   
+                                        <div class="media-body">
+                                            <h4 class="select-name">User Name 1</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                                <hr />
+                                <div class="media account-select">
+                                    <a href="#user2" data-toggle="tab">
+                                        <div class="pull-left">     
+                                            <img class="select-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                                        </div>   
+                                        <div class="media-body">
+                                            <h4 class="select-name">User Name 2</h4>
+                                        </div>
+                                    </a>
+                                </div>
+                                <hr />
+                        <p class="text-center"><a href="#login" data-toggle="tab">Back to Login</a></p>
+                        </div>
+                        </div>
+                        <div class="tab-pane" id="user1">
+                            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                            <h3 class="text-center">User Name 1</h3>
+                            <form class="form-signin" action="" method="">
+                                <input type="hidden" class="form-control" value="User Name">
+                                <input type="password" class="form-control" placeholder="Password" autofocus required>
+                                <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
+                            </form>
+                            <p class="text-center"><a href="#login" data-toggle="tab">Back to Login</a></p>
+                    <p class="text-center"><a href="#select" data-toggle="tab">Select another Account</a></p>
+                        </div>
+                        <div class="tab-pane" id="user2">
+                            <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                            <h3 class="text-center">User Name 2</h3>
+                            <form class="form-signin" action="" method="">
+                                <input type="hidden" class="form-control" value="User Name">
+                                <input type="password" class="form-control" placeholder="Password" autofocus required>
+                                <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" />
+                            </form>
+                            <p class="text-center"><a href="#login" data-toggle="tab">Back to Login</a></p>
+                    <p class="text-center"><a href="#select" data-toggle="tab">Select another Account</a></p>
+                        </div>
+                    </div>
+            </div>
         </div>
-		</form>
+    </div>
+</div>
+
+
+
         <div id="msg" align="center" class="error"></div>
-        <script language="JavaScript">
-            <!--
-            document.login.username.focus();
-            //-->
-        </script> 
+
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 		<?php require "google.php"; ?>
     </body>
 </html>
