@@ -1083,6 +1083,7 @@ class UploadHandler
                     $file->error = $this->get_error_message('abort');
                 }
             }
+			/*
 			$pdo = getPDO();
 			
 			$sql = 'INSERT INTO photos (path) value (:path)';
@@ -1093,6 +1094,7 @@ class UploadHandler
 			
 			$id = $pdo->lastInsertId('id');
 			$file -> id = $id;
+			*/
             $this->set_additional_file_properties($file);
         }
 		//file->size = 500;
