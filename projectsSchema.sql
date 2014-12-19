@@ -26,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `projects` (
   `competition` varchar(50) NOT NULL DEFAULT '0',
   `year` smallint(5) unsigned NOT NULL DEFAULT '0',
   `description` varchar(5000) NOT NULL DEFAULT '0',
-  `photos` varchar(50) DEFAULT '0',
+  `photos` varchar(5000) DEFAULT '0',
   `video_link` varchar(50) DEFAULT '0',
   `sources` varchar(2000) NOT NULL DEFAULT '0',
   `views` smallint(5) unsigned NOT NULL DEFAULT '0',
