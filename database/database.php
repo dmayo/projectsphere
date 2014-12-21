@@ -9,6 +9,13 @@
 		$query->execute();
 		return $query->fetchAll();
 	}
+	function getProjectsByID($id) {
+		$pdo = getPDO();
+		$sql = "SELECT * FROM projects WHERE id=" . $id . " LIMIT 1";
+		$query = $pdo->prepare($sql);
+		$query->execute();
+		return $query->fetchAll();
+	}
 	/*
 	function getPhotoUrl($id) {
 		if(is_int($id)) {

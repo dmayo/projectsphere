@@ -4,7 +4,7 @@ require "checklogin.php";
 if(isset($_COOKIE["upload_user"])&&isset($_COOKIE["user_code"])&&checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])==true) {
     echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"><//head>';
     if($_COOKIE["upload_user"]!="administrator"){
-		echo '<meta http-equiv="refresh" content="0;url=../index.php">';
+		echo '<meta http-equiv="refresh" content="0;url=../projects/index.php">';
 	}
 	else{
 		echo '<meta http-equiv="refresh" content="0;url=admin.php">';
@@ -213,7 +213,7 @@ function validate($username,$password, $remember) {
                 if($username!="administrator"){
 					$msg = '<script type="text/javascript">
 					<!--
-					window.location = "../index.php"
+					window.location = "../projects/index.php"
 					//-->
 					</script>';
 				}

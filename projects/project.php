@@ -39,7 +39,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><i class="glyphicon glyphicon-record"></i> Project Sphere</a>
+                <a class="navbar-brand" href="index.php"><i class="glyphicon glyphicon-record"></i> Project Sphere</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -63,81 +63,42 @@
     <!-- Page Content -->
     <div class="container">
 
-        <!-- Page Header -->
+    <?php
+        $projectID = $_GET['id'];
+        require_once (__DIR__."/../database/database.php");
+        $projects = getProjectsByID($projectID);
+        foreach ($projects as $project) {
+    echo '
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Project Gallery
-                    <small>project programming</small>
+                <h1 class="page-header">' . $project['project_name'] . '
+                    <!--<small>project programming</small>-->
                 </h1>
             </div>
         </div>
+    
+    ';
+    echo '<div clas="row">';
+        echo '<div class="col-md-4 portfolio-item">
+        		<a href="project.php?id='.$project['id'].'">';
+
+        $photos = split('<',$project['photos']);
+        $photo_url = "";
+        foreach ($photos as $photo)  {
+        	$photo_url= $photo;
+        	//$photo_url=getPhotoUrl($photo);
+        	if(!empty($photo_url)) {
+        		break;
+        	}
+        }
+        echo '<img class="img-responsive" src="'.$photo_url.'" alt="">';
+        echo '</a><p>'.substr($project['description'], 0, 30).'</p></div>';
+        }
+    echo '</div>';
+        ?>
         <!-- /.row -->
 
-        <!-- Projects Row -->
-        <div class="row">
-			<?php
-				require_once (__DIR__."/../database/database.php");
-				$projects = getProjectsBrief();
-				foreach ($projects as $project) {
-					echo '<div class="col-md-4 portfolio-item">
-							<a href="project.php?id='.$project['id'].'">';
-
-					$photos = split('<',$project['photos']);
-					$photo_url = "";
-					foreach ($photos as $photo)  {
-						$photo_url= $photo;
-						//$photo_url=getPhotoUrl($photo);
-						if(!empty($photo_url)) {
-							break;
-						}
-					}
-					echo '<img class="img-responsive" src="'.$photo_url.'" alt="">';
-					echo '</a>
-							<h3>
-								<a href="project.php?id='.$project['id'].'">';
-					
-					echo $project['project_name'];
-					echo '</a></h3>
-								<p>'.substr($project['description'], 0, 30).'</p></div>';
-				}
-				
-			?>
-        </div>
-        <!-- /.row -->
-
-        <hr>
-
-        <!-- Pagination -->
-        <div class="row text-center">
-            <div class="col-lg-12">
-                <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <!-- /.row -->
-
-        <hr>
+        
 
         <!-- Footer -->
         <footer>
