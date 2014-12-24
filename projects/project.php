@@ -66,21 +66,21 @@
     <?php
         $projectID = $_GET['id'];
         require_once (__DIR__."/../database/database.php");
-        $projects = getProjectsByID($projectID);
-        foreach ($projects as $project) {
-    echo '
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">' . $project['project_name'] . '
-                    <!--<small>project programming</small>-->
-                </h1>
-            </div>
-        </div>
-    
-    ';
-    echo '<div clas="row">';
-        echo '<div class="col-md-4 portfolio-item">
-        		<a href="project.php?id='.$project['id'].'">';
+        $project = getProjectByID($projectID);
+		
+			echo '
+				<div class="row">
+					<div class="col-lg-12">
+						<h1 class="page-header">' . $project['project_name'] . '
+							<!--<small>project programming</small>-->
+						</h1>
+					</div>
+				</div>
+			
+			';
+			echo '<div clas="row">';
+				echo '<div class="col-md-4 portfolio-item">
+						<a href="project.php?id='.$project['id'].'">';
 
         $photos = split('<',$project['photos']);
         $photo_url = "";
@@ -93,8 +93,8 @@
         }
         echo '<img class="img-responsive" src="'.$photo_url.'" alt="">';
         echo '</a><p>'.substr($project['description'], 0, 30).'</p></div>';
-        }
-    echo '</div>';
+		
+		echo '</div>';
         ?>
         <!-- /.row -->
 

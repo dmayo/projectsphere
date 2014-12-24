@@ -4,17 +4,20 @@
 	
 	function getProjectsBrief($limit = 9999, $offset = 0) {
 		$pdo = getPDO();
-		$sql = "SELECT * FROM projects ORDER BY id DESC LIMIT $limit OFFSET $offset";
+		$sql = "SELECT * FROM projects ORDER BY id DESC LIMIT :limit OFFSET :offset";
 		$query = $pdo->prepare($sql);
+		$array = array('limit' => $limit, 'offset' => $offset);
+		$query->bindParam(':limit', $limit, PDO::PARAM_INT);
+		$query->bindParam(':offset', $offset, PDO::PARAM_INT);
 		$query->execute();
-		return $query->fetchAll();
+		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
-	function getProjectsByID($id) {
+	function getProjectByID($id) {
 		$pdo = getPDO();
-		$sql = "SELECT * FROM projects WHERE id=" . $id . " LIMIT 1";
+		$sql = "SELECT * FROM projects WHERE id= :id LIMIT 1";
 		$query = $pdo->prepare($sql);
-		$query->execute();
-		return $query->fetchAll();
+		$query->execute(array('id' => $id));
+		return $query->fetch(PDO::FETCH_ASSOC);
 	}
 	/*
 	function getPhotoUrl($id) {
