@@ -59,65 +59,55 @@ $email1=strtolower($email1);
 $email=strtolower($email);
 $empty='';
 
-if($user=='')
-{
-$empty=1;
-
+if($user==''){
+	$empty=1;
 }
-if($pass==''||$pass1=='')
-{
-$empty=1;
+if($pass==''||$pass1==''){
+	$empty=1;
 }
-if($email==''||$email1=='')
-{
-$empty=1;
+if($email==''||$email1==''){
+	$empty=1;
 }
-if($empty==1)
-{
-
-$msg='
-<script type="text/javascript">
-document.getElementById("password").value="";
-document.getElementById("password1").value="";
-</script>
-You have left at least one field empty.
-';
-return $msg;
+if($empty==1){
+	$msg='
+	<script type="text/javascript">
+	document.getElementById("password").value="";
+	document.getElementById("password1").value="";
+	</script>
+	You have left at least one field empty.
+	';
+	return $msg;
 }
-elseif($pass!=$pass1)
-{
-$msg='
-<script type="text/javascript">
-document.getElementById("password").value="";
-document.getElementById("password1").value="";
-</script>
-The passwords do not match.';
-return $msg;
+elseif($pass!=$pass1){
+	$msg='
+	<script type="text/javascript">
+	document.getElementById("password").value="";
+	document.getElementById("password1").value="";
+	</script>
+	The passwords do not match.';
+	return $msg;
 }
-elseif($email!=$email1)
-{
-$msg='
-<script type="text/javascript">
-document.getElementById("password").value="";
-document.getElementById("password1").value="";
-</script>
-The emails do not match.';
-return $msg;
+elseif($email!=$email1){
+	$msg='
+	<script type="text/javascript">
+	document.getElementById("password").value="";
+	document.getElementById("password1").value="";
+	</script>
+	The emails do not match.';
+	return $msg;
 }
-elseif(!filter_var($email, FILTER_VALIDATE_EMAIL))
-{
-$msg='
-<script type="text/javascript">
-document.getElementById("password").value="";
-document.getElementById("password1").value="";
-</script>
-The email provided is not valid.';
-return $msg;
+elseif(!filter_var($email, FILTER_VALIDATE_EMAIL)){
+	$msg='
+	<script type="text/javascript">
+	document.getElementById("password").value="";
+	document.getElementById("password1").value="";
+	</script>
+	The email provided is not valid.';
+	return $msg;
 }
-else
-{
-require "config/config.php";
- $link = mysql_connect($db_server, $db_username, $db_password)
+else{
+	require "config/config.php";
+ 	$link = mysql_connect($db_server, $db_username, $db_password)
         or die('Could not connect: ' . mysql_error());
 		
     //Select the database
@@ -128,41 +118,39 @@ require "config/config.php";
 
     while($row = mysql_fetch_array($result)) {
         if( $row['user_name']==$user) {
-		$msg='
-		<script type="text/javascript">
-		document.getElementById("password").value="";
-		document.getElementById("password1").value="";
-		</script>
-		The username is taken.';
-		return $msg;
-		
-            }
-			}
+			$msg='
+			<script type="text/javascript">
+			document.getElementById("password").value="";
+			document.getElementById("password1").value="";
+			</script>
+			The username is taken.';
+			return $msg;
+        }
+	}
 			
 	$query= "SELECT * FROM $db_table WHERE email='$email'";
     $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
     while($row = mysql_fetch_array($result)) {
         if( $row['email']==$email) {
-		$msg='
-		<script type="text/javascript">
-		document.getElementById("password").value="";
-		document.getElementById("password1").value="";
-		</script>
-		The email is already registered to another account.';
-		return $msg;
-		
-            }
-			}
+			$msg='
+			<script type="text/javascript">
+			document.getElementById("password").value="";
+			document.getElementById("password1").value="";
+			</script>
+			The email is already registered to another account.';
+			return $msg;
+        }
+	}
 
-$pass1=$pass;
-$pass= encrypt1 ($pass,$salt);
-$msg=$pass;
+	$pass1=$pass;
+	$pass= encrypt1 ($pass,$salt);
+	$msg=$pass;
 
 
-$rndcode=new rndPass(50);
+	$rndcode=new rndPass(50);
     $usercode=$rndcode->PassGen();
- $link = mysql_connect($db_server, $db_username, $db_password)
+ 	$link = mysql_connect($db_server, $db_username, $db_password)
         or die('Could not connect: ' . mysql_error());
     //Select the database
     mysql_select_db($db_database ,$link ) or die('Could not select database');
@@ -245,11 +233,12 @@ $ajax = new PHPLiveX(array("adduser","check1"));
 
 <html>
 <head>
-		<link rel="shortcut icon" href="images/favicon.ico" />
-        <link href="style.css" type="text/css" rel="stylesheet" />	
-		<?php
-		$ajax->Run(); 
-		?> 
+	<title>Project Sphere Registration</title>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="style.css" type="text/css" rel="stylesheet" />	
+	<?php
+	$ajax->Run(); 
+	?> 
 	<script type="text/javascript" src="securimage/prototype.js"></script>
 		
 		<script type="text/javascript">
@@ -300,85 +289,55 @@ t=0;
     });
 	i=0;
 
-return false;
+	return false;
   }
 
+	</script>
 
-		</script>
-        <script type="text/javascript">
-		//alert("pie");
-         
-        </script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+	<link rel="stylesheet" href="newlogin.css">
 
 </head>
 <body>
-Register
 <div id="pr" align="right" style="visibility:hidden;">Loading...</div>
 <div id="pie" align="right" style="visibility:hidden;"></div>
-        <form name="register" id="register" action="process.php" method="post">
-            <div align="center" style="padding-top:10px;font-size:220%;font-weight:bold;">PSet Checker</div>
-            <div align="center" style="padding-bottom:8px;">David Mayo and Albert Shaw</div>
-            <table border="0" align="center" cellspacing="0" cellpadding="5">
-			
-				  <tr>
-                    <td>
-                        Email: 
-                    </td>
-                    <td>
-                        <?php echo $email ?>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        User Name:
-                    </td>
-                    <td>
-                        <input type="text" id="username" maxlength="50">
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Password:
-                    </td>
-                    <td>
-                        <input type="password" id="password" maxlength="50">
-                    </td>
-                </tr>
-				<tr>
-                    <td>
-                        Confirm Password:
-                    </td>
-                    <td>
-                        <input type="password" id="password1" maxlength="50">
-                    </td>
-                </tr>
-                
-				
-				<tr>
-                    <td align="center" colspan="2">
-				
-                    <img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
-                    </td>
-                </tr>
-				<tr>
-                    <td align="center" colspan="2">
-				<a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">Reload Image</a>
-                    </td>
-                </tr>
-				<tr>
-                    <td align="center" colspan="2">
-                       <input type="text" name="code" id="code" size="10" maxlength="6" />
-                    </td>
-                </tr>
-				
-				<tr>
-                    <td align="center" colspan="2">
-                        <input type="submit" value="Login" onclick="test();return false;">
-                    </td>
-                </tr>
-            </table>
-        </form>
-		
+	<div class="container">
+	    <div class="row">
+	        <div class="col-sm-6 col-md-4 col-md-offset-4">
+	            <div class="account-wall">
+	                <div id="my-tab-content" class="tab-content">
+	                    <div class="tab-pane active" id="login">
+	                        <span class="title"><h3><i class="glyphicon glyphicon-record"></i> Project Sphere</h3></span>
+	                        <br />
+	                        <form class="form-signin" name="register" id="register" action="process.php" method="post">
+	                            <input type="text" class="form-control form-signin-Top" placeholder="<?php echo $email ?>" name="email" readonly>
+	                            <input type="text" class="form-control form-signin-Middle" placeholder="User Name" id="username" name="username" required autofocus>
+	                            <input type="text" class="form-control form-signin-Middle" placeholder="Password" id="password" name="password">
+	                            <input type="text" class="form-control form-signin-Bottom" placeholder="Confirm Password" id="password1" name="password1">
+	                            
+
+ 								<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
+ 								<br />
+         						<a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">Reload Image</a>
+								<br />
+								<input type="text" name="code" id="code" size="10" maxlength="6" />
+								<br />
+								<br />
+	                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Create Account"  onclick="test();return false;"/>
+	                        </form>
+	                        <br />
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
         <div id="msg" align="center" class="error"></div>
 		<div id="msg123" align="center" class="error"></div>
         <script language="JavaScript">
@@ -389,15 +348,15 @@ Register
         </script>
 		<?php
 		}
-		else
-		{
-		echo '<meta http-equiv="refresh" content="5;url=index.php">';
+		else{
+			echo '<meta http-equiv="refresh" content="5;url=index.php">';
 		}
 		}
-		else
-		{
-		echo '<meta http-equiv="refresh" content="5;url=index.php">';
+		else{
+			echo '<meta http-equiv="refresh" content="5;url=index.php">';
 		}
 		?>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>

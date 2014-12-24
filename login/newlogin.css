@@ -29,18 +29,32 @@ body{
 {
     z-index: 2;
 }
-.form-signin input[type="text"]
+.form-signin-Top
 {
     margin-bottom: -1px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
 }
-.form-signin input[type="password"]
+.form-signin-Bottom
 {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+.form-signin-Middle
+{
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.form-signin-Single
+{
+    margin-bottom: 10px;
+}
+
 .account-wall
 {
     margin-top: 80px;
