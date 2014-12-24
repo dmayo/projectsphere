@@ -22,62 +22,44 @@ else {
 ?>
 <html>
 <head>
-        <title>File Manager</title>
+        <title>Project Sphere Reset Password</title>
 		<link rel="shortcut icon" href="images/favicon.ico" />
         <link href="style.css" type="text/css" rel="stylesheet" />
-		<link type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
-		<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
-		<script type="text/javascript" src="jquery/ui/js/jquery-ui-1.7.2.custom.min.js"></script>
-		<script type="text/javascript" src="jquery.corner.js"></script>
-		<script type="text/javascript">
-			$("#loginbox").corner();
-			$("#header").corner("top");
-		</script>
+
+        <script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+        <link rel="stylesheet" href="newlogin.css">
 </head>
 <body>
-	<div class="ui-widget-content" id="loginbox" style="width:450px;height:350px;margin:25 auto;text-align:center;">
-	<h3 class="ui-widget-header" id="header">Change Password</h3>
-		<form method="post" action="change.php" name="register">
-		<div align="center" style="padding-top: 30px; font-size: 220%; font-weight: bold;"><img width="257" height="70" border="0" src="images/logo.png"></div>
-            <div align="center" style="padding-top:0px;padding-bottom:5px;font-size:120%;font-weight:bold;"><?php echo $user; ?></div>
-            <table border="0" align="center" cellspacing="0" cellpadding="5" height="150px" style="font-size:105%;">          
-                <tr>
-                    <td>
-                        Current Password:
-                    </td>
-                    <td>
-                        <input type="password" name="current" maxlength="50">
-                    </td>
-                </tr>
-				<tr>
-                    <td>
-                        New Password:
-                    </td>
-                    <td>
-                        <input type="password" name="pass" maxlength="50">
-                    </td>
-                </tr>
-				<tr>
-                    <td>
-                        Confirm Password:
-                    </td>
-                    <td>
-                        <input type="password" name="pass1" maxlength="50">
-                    </td>
-                </tr>
-               <tr>
-                    <td align="center" colspan="2">
-                        <input type="submit" value="Submit" onclick="Submit">
-                    </td>
-                </tr>
-            </table>
-        </form>
-		<script language="JavaScript">
-            <!--
-            document.register.current.focus();
-            //-->
-        </script>
-<br /><span class="error"><?php echo $_GET["message"];?></span>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <div class="account-wall">
+                <div id="my-tab-content" class="tab-content">
+                    <div class="tab-pane active" id="login">
+                        <span class="title"><h3><i class="glyphicon glyphicon-record"></i> Project Sphere</h3></span>
+                        <form class="form-signin" method="post" action="change.php" name="register">
+                            <input type="text" class="form-control form-signin-Top" placeholder="Current Password" name="current" maxlength="50" required autofocus>
+                            <input type="password" class="form-control form-signin-Middle" placeholder="New Password" name="pass" maxlength="50" required>
+                            <input type="password" class="form-control form-signin-Bottom" placeholder="Confirm New Password" name="pass1" maxlength="50" required>
+                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Change Password" onclick="Submit" />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<br /><span class="error"><?php if(isset($_GET["message"])){ echo $_GET["message"];} ?></span>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
 </body>
 <?php
 }
