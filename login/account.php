@@ -44,7 +44,7 @@ else {
                     <div class="tab-pane active" id="login">
                         <span class="title"><h3><i class="glyphicon glyphicon-record"></i> Project Sphere</h3></span>
                         <form class="form-signin" method="post" action="change.php" name="register">
-                            <input type="text" class="form-control form-signin-Top" placeholder="Current Password" name="current" maxlength="50" required autofocus>
+                            <input type="password" class="form-control form-signin-Top" placeholder="Current Password" name="current" maxlength="50" required autofocus>
                             <input type="password" class="form-control form-signin-Middle" placeholder="New Password" name="pass" maxlength="50" required>
                             <input type="password" class="form-control form-signin-Bottom" placeholder="Confirm New Password" name="pass1" maxlength="50" required>
                             <input type="submit" class="btn btn-lg btn-default btn-block" value="Change Password" onclick="Submit" />
