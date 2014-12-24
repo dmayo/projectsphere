@@ -317,9 +317,8 @@ t=0;
 	                        <form class="form-signin" name="register" id="register" action="process.php" method="post">
 	                            <input type="text" class="form-control form-signin-Top" placeholder="<?php echo $email ?>" name="email" readonly>
 	                            <input type="text" class="form-control form-signin-Middle" placeholder="User Name" id="username" name="username" required autofocus>
-	                            <input type="text" class="form-control form-signin-Middle" placeholder="Password" id="password" name="password">
-	                            <input type="text" class="form-control form-signin-Bottom" placeholder="Confirm Password" id="password1" name="password1">
-	                            
+	                            <input type="password" class="form-control form-signin-Middle" placeholder="Password" id="password" name="password">
+	                            <input type="password" class="form-control form-signin-Bottom" placeholder="Confirm Password" id="password1" name="password1">
 
  								<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
  								<br />

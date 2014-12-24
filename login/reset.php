@@ -1,24 +1,4 @@
-
-<html>
-<head>
-        <title>File Manager Reset Password</title>
-		<link rel="shortcut icon" href="images/favicon.ico" />
-        <link href="style.css" type="text/css" rel="stylesheet" />
-		<link type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
-		<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
-		<script type="text/javascript" src="jquery/ui/js/jquery-ui-1.7.2.custom.min.js"></script>
-		<script type="text/javascript" src="jquery.corner.js"></script>
-		<script type="text/javascript">
-			$("#loginbox").corner();
-			$("#header").corner("top");
-		</script>
-</head>
-<div id="pr" align="right" style="visibility:hidden;">Loading...</div>
-<div class="ui-widget-content" id="loginbox" style="width:450px;height:350px;margin:0 auto;text-align:center;">
-<h3 class="ui-widget-header" id="header">File Manager Reset Password</h3>
-<div align="center" style="padding-top:40px;font-size:220%;font-weight:bold;"><img src="images/logo.png" border="0" height="70" width="257" /></div>
 <?php
-$userid=$_GET['userid'];
 require "phplivex/PHPLiveX.php";
 require "config/config.php";
 require "log/log.php";
@@ -28,28 +8,60 @@ function encrypt1 ($pass,$salt){
 	$pass=md5($salt.$pass.$salt);
 	return $pass;	
 }
-echo '<span style="font-size:105%;">Please enter a new password for your account.<span><br /><br />';
-if($_GET["userid"]!=""){
-echo '
-<form action="reset1.php?userid='.$userid.'" method="post" >
-<table border="0" align="center" cellspacing="0" cellpadding="8">
-    <tr>
-		<td>Password:</td>
-		<td><input type="password" name="pass" value="" /></td>
-	</tr>
-	<tr>
-		<td>Confirm Password:</td>
-		<td><input type="password" name="pass1" value="" /></td>
-	</tr>
-	<tr>
-		<td align="center" colspan="2"><input type="submit" value="Reset Password"/></td>
-	</tr>
-<table>
-</form>';
-
-}
-	
 ?>
+
+<html>
+<head>
+    <title>Project Sphere Reset Password</title>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+    <link href="style.css" type="text/css" rel="stylesheet" />
+	<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
+
+	<!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+
+    <link rel="stylesheet" href="newlogin.css">
+
+</head>
+<div id="pr" align="right" style="visibility:hidden;">Loading...</div>
+
+	<div class="container">
+	    <div class="row">
+	        <div class="col-sm-6 col-md-4 col-md-offset-4">
+	            <div class="account-wall">
+	                <div id="my-tab-content" class="tab-content">
+	                    <div class="tab-pane active" id="login">
+	                        <span class="title"><h3><i class="glyphicon glyphicon-record"></i> Project Sphere</h3></span>
+	                        <br />
+	                        <?php
+								if(isset($_GET["userid"])&&$_GET["userid"]!=""){
+									$userid=$_GET['userid'];
+							?>
+	                        Please enter a new password for your account.
+	                        <br />
+	                        <form class="form-signin" action=<?php echo '"reset1.php?userid='. $userid .'"'; ?> method="post">
+	                            <input type="password" class="form-control form-signin-Top" placeholder="Password" name="pass" required autofocus>
+	                            <input type="password" class="form-control form-signin-Bottom" placeholder="Confirm Password" name="pass1">                         
+	                            <input type="submit" class="btn btn-lg btn-default btn-block" value="Reset Password" />
+	                        </form>
+	                        <br />
+	                        <?php
+	                    		}
+	                    		else{
+	                    			echo 'Error: invalid user id';
+	                    		}
+	                        ?>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 
 </body>
 </html>
