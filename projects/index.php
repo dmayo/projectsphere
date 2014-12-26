@@ -56,6 +56,7 @@
                 </ul>
                 <div style="float:right;">
                 <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href='../fileupload/submitProject.html'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href='../login/logout.php'">Log Out</button>
                 </div>
             </div>
             <!-- /.navbar-collapse -->
