@@ -1,20 +1,17 @@
 <html>
 <head>
-        <title>Project Sphere Reset Password</title>
+    <title>Project Sphere Reset Password</title>
 
-		<link rel="shortcut icon" href="images/favicon.ico" />
-		<link type="text/css" href="jquery/ui/css/ui-lightness/jquery-ui-1.7.2.custom.css" rel="stylesheet" />	
-		<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
-		<script type="text/javascript" src="jquery/ui/js/jquery-ui-1.7.2.custom.min.js"></script>
+	<link rel="shortcut icon" href="images/favicon.ico" />
+	<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
 
-        <!-- Optional theme -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-
-        <link rel="stylesheet" href="newlogin.css">
+    <link rel="stylesheet" href="newlogin.css">
 </head>
 <body>
 	<div id="pr" align="right" style="visibility:hidden;">Loading...</div>

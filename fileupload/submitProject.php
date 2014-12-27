@@ -61,5 +61,6 @@
 					'photos' => $photos, 'video_link' => $video_link, 'website_link' => $website_link, 'sources' => $sources);
 	$query->execute($exe);
 
-	}
+  	echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
+  	echo '<meta 4http-equiv="refresh" content="0;url=../projects/index.php">';
 ?>

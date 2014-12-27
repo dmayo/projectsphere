@@ -316,8 +316,8 @@ $ajax = new PHPLiveX(array("validate"));
                             <input type="submit" class="btn btn-lg btn-default btn-block" value="Sign In" onclick="test();return false;" />
                             <div id="tabs" data-tabs="tabs">
                                 <p class="text-center"> Stay signed in <input type="checkbox" id="remember" name="remember" /></p>
-                                <p class="text-center"><a href="#register" data-toggle="tab">Need an Account?</a></p>
-                                <p class="text-center"><a href="forgot.php" data-toggle="tab">Forgot Password?</a></p>
+                                <p class="text-center"><a href="register.php" data-toggle="tab">Need an Account?</a> <a href="forgot.php" data-toggle="tab">Forgot Password?</a></p>
+                                <p class="text-center"></p>
                             </div>
                         </form>
                     </div>
