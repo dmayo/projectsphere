@@ -141,5 +141,7 @@
 
   	//echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
   	//echo '<meta 4http-equiv="refresh" content="0;url=../projects/index.php">';
-	}
+	echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
+	echo '<meta http-equiv="refresh" content="0;url=../projects/index.php">';	
+}
 ?>
