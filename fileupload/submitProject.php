@@ -1,142 +1,347 @@
 <?php
+require "../login/checklogin.php";
+require "../login/config/config.php";
 
-	require "../login/checklogin.php";
-	require "../login/config/config.php";
+if(!isset($_COOKIE["upload_user"])||!isset($_COOKIE["user_code"])||!checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])) {
 
-	$id = checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"]);
-	if(!isset($_COOKIE["upload_user"])||!isset($_COOKIE["user_code"])||!$id) {
-	
-		echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
-		echo '<meta http-equiv="refresh" content="0;url=../login/login.php">';
-	
-	} else {
-	
-	require_once "../database/pdo.php";
-	require_once "../database/database.php";
+  echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
+  echo '<meta http-equiv="refresh" content="0;url=../login/login.php">';
+}
+else{
+?>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	$pdo = getPDO();
-	
-	if (isset($_POST['projectName'])) {
-		$projectName = trim(filter_var($_POST['projectName'], FILTER_SANITIZE_STRING));
-	}
-	
-	if (isset($_POST['team_email'])) {
-		$teammate_email = filter_var(strtolower($_POST['team_email']), FILTER_SANITIZE_EMAIL);
-	}
-	
-	if (isset($_POST['team_first_name'])) {
-		$teammate_first_name = preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($_POST['team_first_name']));
-	}
-	
-	if (isset($_POST['team_last_name'])) {
-		$teammate_last_name = preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($_POST['team_last_name']));
-	}
-	
-	if (isset($_POST['category'])) {
-		$category =  trim(filter_var($_POST['category'], FILTER_SANITIZE_STRING));
-	}
-	
-	if (isset($_POST['grade'])) {
-		$grade = filter_var($_POST['grade'], FILTER_SANITIZE_NUMBER_INT);
-	}
-	
-	if (isset($_POST['school'])) {
-		$school = trim(filter_var($_POST['school'], FILTER_SANITIZE_STRING));
-	}
-	
-	if (isset($_POST['competition'])) {
-		$competition = trim(filter_var($_POST['competition'], FILTER_SANITIZE_STRING));
-	}
-	
-	$year = 2015;
-	
-	if (isset($_POST['video_link'])) {
-		$video_link = filter_var($_POST['video_link'], FILTER_SANITIZE_URL);
-	} else {
-		$video_link = "";
-	}
-	
-	if (isset($_POST['website_link'])) {
-		$website_link = filter_var($_POST['website_link'], FILTER_SANITIZE_URL);
-	} else {
-		$website_link = "";
-	}
-	
-	if (isset($_POST['description'])) {
-		$description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
-	}
-	
-	if (isset($_POST['sources'])) {
-		$sources = filter_var($_POST['sources'], FILTER_SANITIZE_STRING);
-	} else {
-		$sources = "";
-	}
-	
-	if (isset($_POST['photos'])) {
-		$photos = filter_var($_POST['photos'], FILTER_SANITIZE_URL);
-	} else {
-		$photos = "";
-	}
-	
-	if (empty($projectName)) {
-		throw new InvalidInputException("Please enter a valid Project Name");
-	}
-	
-	if (empty($category)) {
-		throw new InvalidInputException("Please select a Category");
-	}
-	
-	if (empty($grade)) {
-		throw new InvalidInputException("Please select a Grade");
-	}
-	
-	if (empty($school)) {
-		throw new InvalidInputException("Please enter a valid School Name");
-	}
-	
-	if (empty($competition)) {
-		throw new InvalidInputException("Please enter a valid Competition Name");
-	}
-	
-	if (empty($description)) {
-		throw new InvalidInputException("Please enter a valid Project Description");
-	}
-	
-	$teammateID = false;
-	if (!empty($teammate_email)) {
-		if (filter_var($teammate_email, FILTER_VALIDATE_EMAIL)) {
-			if (empty($teammate_first_name) || empty($teammate_last_name)) {
-				throw new InvalidTeammateException("Please enter a valid name for you're teammate.");
-			}
-			$teammateID = getUserIDByEmail($teammate_email);
-			if ($teammateID == -1) {
-				$teammateID = addSkeletonUser($teammate_email, $teammate_first_name, $teammate_last_name);
-			}
-		} else {
-			throw new InvalidTeammateException("The email you entered for you're teammate is invalid.");
-		}
-	}
-	
-	if ($teammateID) {
-		$authors = ",$id,$teammateID,";
-	} else {
-		$authors = ",$id,";
-	}
-	
-	$sql = 'INSERT INTO projects (project_name, category, grade, 
-			authors, school, competition, year,	description, photos, 
-			video_link, website_link, sources, views, submission_date) value 
-			(:projectName, :category, :grade, :authors, :school, :competition,
-			:year, :description, :photos, :video_link, :website_link, :sources, 0, now())';
-	
-	$query = $pdo->prepare($sql);
-	$exe = array('projectName' => $projectName, 'category' => $category, 'authors' => $authors,
-					'grade' => $grade, 'authors' => $authors, 'school' => $school,
-					'competition' => $competition, 'year' => $year, 'description' => $description,
-					'photos' => $photos, 'video_link' => $video_link, 'website_link' => $website_link, 'sources' => $sources);
-	$query->execute($exe);
+    <title>Project Sphere</title>
+    <link rel="shortcut icon" href="../login/images/favicon.ico" />
 
-  	//echo '<head><META HTTP-EQUIV="Pragma" CONTENT="no-cache"><META HTTP-EQUIV="Expires" CONTENT="-1"></head>';
-  	//echo '<meta 4http-equiv="refresh" content="0;url=../projects/index.php">';
-	}
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link href="css/3-col-portfolio.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+	<script src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script>
+	<!-- Generic page styles -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- blueimp Gallery styles -->
+	<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
+	<link rel="stylesheet" href="css/jquery.fileupload.css">
+	<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../projects/index.php"><i class="glyphicon glyphicon-record"></i> Project Sphere</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <div style="float:right;">
+
+                <?php
+                echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+                ?>
+
+                </div>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">Submit Project</h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Projects Row -->
+        <div class="row">
+	<form id="project_form" action="submitProject_handler.php" method="post">
+	<table>
+		<tr>
+			<td>Project Name:</td><td><input type="text" name="projectName" /></td>
+		</tr>
+		<tr>
+			<td>Teammate Email:</td><td><input type="text" name="team_email" /></td>
+		</tr>
+		<tr>
+			<td>Teamate First Name:</td><td><input type="text" name="team_first_name" />
+		</tr>
+		<tr>
+			</td><td>Teammate Last Name:</td><td><input type="text" name="team_last_name" /></td>
+		</tr>
+		<tr>
+			
+			<td>Category:</td>
+			<td>
+				<select name="category">
+					<option value="3D Modeling">3D Modeling</option>
+					<option value="Animated Graphic Design">Animated Graphic Design</option>
+					<option value="Case Modification">Case Modification</option>
+					<option value="Digital Audio Production">Digital Audio Production</option>
+					<option value="Digital Photography">Digital Photography</option>
+					<option value="Digital Video Production">Digital Video Production</option>
+					<option value="Game Design">Game Design</option>
+					<option value="Hardware">Hardware</option>
+					<option value="Individual Programming Challenge">Individual Programming Challenge</option>
+					<option value="Mobile Apps">Mobile Apps</option>
+					<option value="Multimedia Applications">Multimedia Applications</option>
+					<option value="Non-Animated Graphic Design">Non-Animated Graphic Design</option>
+					<option value="Non-Multimedia Applications">Non-Multimedia Applications</option>
+					<option value="Project Programming">Project Programming</option>
+					<option value="Robotics">Robotics</option>
+					<option value="Technology Literacy Challenge">Technology Literacy Challenge</option>
+					<option value="Web 2.0 Internet Applications">Web 2.0 Internet Applications</option>
+					
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td>Grade:</td><td><input type="text" name="grade" /></td>
+		</tr>
+		<tr>
+			<td>School:</td><td><input type="text" name="school" /></td>
+		</tr>
+		<tr>
+			<td>Competition:</td><td><input type="text" name="competition" /></td>
+		</tr>
+		<tr>
+			<td>Video Link:</td><td><input type="text" name="video_link" /></td>
+		</tr>
+		<tr>
+			<td>Website Link:</td><td><input type="text" name="website_link" /></td>
+		</tr>
+		
+	
+		
+	
+	</table>
+	
+		Description:<br />
+		<textarea name="description"></textarea>
+		<br /><br />
+		Sources:<br /><textarea name="sources"></textarea>
+	<br />
+	<input type="hidden" name="photos" id="imageinput"></input>
+	
+	</form>
+	
+	
+	<form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <!-- Redirect browsers with JavaScript disabled to the origin page -->
+        <div class="row fileupload-buttonbar">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn btn-success fileinput-button">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>Add files...</span>
+                    <input type="file" name="files[]" accept="image/*" multiple>
+                </span>
+                <button type="submit" class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start upload</span>
+                </button>
+                <button type="reset" class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel upload</span>
+                </button>
+                <button type="button" class="btn btn-danger delete">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" class="toggle">
+                <!-- The global file processing state -->
+                <span class="fileupload-process"></span>
+            </div>
+            <!-- The global progress state -->
+            <div class="col-lg-5 fileupload-progress fade">
+                <!-- The global progress bar -->
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+                    <div class="progress-bar progress-bar-success" style="width:0%;"></div>
+                </div>
+                <!-- The extended global progress state -->
+                <div class="progress-extended">&nbsp;</div>
+            </div>
+        </div>
+        <!-- The table listing the files available for upload/download -->
+        <table role="presentation" class="table table-striped"><tbody class="files"></tbody></table>
+    </form>
+<!-- The blueimp Gallery widget -->
+<div id="test-gallery" class="blueimp-gallery blueimp-gallery-controls" data-filter=":even">
+    <div class="slides"></div>
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+</div>
+<br />
+<input type="submit" form="project_form"></input>
+
+       </div>
+        <!-- /.row -->
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; David Mayo & Albert Shaw 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<!-- The template to display files available for upload -->
+<script id="template-upload" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-upload fade">
+        <td>
+            <span class="preview"></span>
+        </td>
+        <td>
+            <p class="name">{%=file.name%}</p>
+            <strong class="error text-danger"></strong>
+        </td>
+        <td>
+            <p class="size">Processing...</p>
+            <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="progress-bar progress-bar-success" style="width:0%;"></div></div>
+        </td>
+        <td>
+            {% if (!i && !o.options.autoUpload) { %}
+                <button class="btn btn-primary start" disabled>
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+            {% } %}
+            {% if (!i) { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+<!-- The template to display files available for download -->
+<script id="template-download" type="text/x-tmpl">
+{% for (var i=0, file; file=o.files[i]; i++) { %}
+    <tr class="template-download fade">
+        <td>
+            <span class="preview">
+                {% if (file.thumbnailUrl) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" data-gallery><img src="{%=file.thumbnailUrl%}"></a>
+                {% } %}
+            </span>
+        </td>
+        <td>
+            <p class="name">
+                {% if (file.url) { %}
+                    <a href="{%=file.url%}" title="{%=file.name%}" download="{%=file.name%}" {%=file.thumbnailUrl?'data-gallery':''%}>{%=file.name%}</a>
+                {% } else { %}
+                    <span>{%=file.name%}</span>
+                {% } %}
+            </p>
+            {% if (file.error) { %}
+                <div><span class="label label-danger">Error</span> {%=file.error%}</div>
+            {% } %}
+        </td>
+        <td>
+            <span class="size">{%=o.formatFileSize(file.size)%}</span>
+        </td>
+        <td>
+            {% if (file.deleteUrl) { %}
+                <button class="btn btn-danger delete" data-type="{%=file.deleteType%}" data-url="{%=file.deleteUrl%}"{% if (file.deleteWithCredentials) { %} data-xhr-fields='{"withCredentials":true}'{% } %}>
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+                <input type="checkbox" name="delete" value="1" class="toggle">
+            {% } else { %}
+                <button class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+            {% } %}
+        </td>
+    </tr>
+{% } %}
+</script>
+	
+	
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- The jQuery UI widget factory, can be omitted if jQuery UI is already included -->
+<script src="js/vendor/jquery.ui.widget.js"></script>
+<!-- The Templates plugin is included to render the upload/download listings -->
+<script src="//blueimp.github.io/JavaScript-Templates/js/tmpl.min.js"></script>
+<!-- The Load Image plugin is included for the preview images and image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Load-Image/js/load-image.all.min.js"></script>
+<!-- The Canvas to Blob plugin is included for image resizing functionality -->
+<script src="//blueimp.github.io/JavaScript-Canvas-to-Blob/js/canvas-to-blob.min.js"></script>
+<!-- Bootstrap JS is not required, but included for the responsive demo navigation -->
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!-- blueimp Gallery script -->
+<script src="//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js"></script>
+<!-- The Iframe Transport is required for browsers without support for XHR file uploads -->
+<script src="js/jquery.iframe-transport.js"></script>
+<!-- The basic File Upload plugin -->
+<script src="js/jquery.fileupload.js"></script>
+<!-- The File Upload processing plugin -->
+<script src="js/jquery.fileupload-process.js"></script>
+<!-- The File Upload image preview & resize plugin -->
+<script src="js/jquery.fileupload-image.js"></script>
+<!-- The File Upload audio preview plugin -->
+<script src="js/jquery.fileupload-audio.js"></script>
+<!-- The File Upload video preview plugin -->
+<script src="js/jquery.fileupload-video.js"></script>
+<!-- The File Upload validation plugin -->
+<script src="js/jquery.fileupload-validate.js"></script>
+<!-- The File Upload user interface plugin -->
+<script src="js/jquery.fileupload-ui.js"></script>
+<!-- The main application script -->
+<script src="js/submitproject.js"></script>
+	
+	<script>
+	</script>
+</body>
+</html>
+<?php
+}
+
 ?>
