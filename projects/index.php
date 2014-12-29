@@ -10,6 +10,7 @@
     <meta name="author" content="">
 
     <title>Project Sphere</title>
+    <link rel="shortcut icon" href="../login/images/favicon.ico" />
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
@@ -55,8 +56,20 @@
                     </li>
                 </ul>
                 <div style="float:right;">
-                <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href='../fileupload/submitProject.html'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
-                <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href='../login/logout.php'">Log Out</button>
+
+                <?php
+                require "../login/config/config.php";
+                require "../login/checklogin.php";
+                if(isset($_COOKIE["upload_user"])&&isset($_COOKIE["user_code"])&&checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])==true) {
+                   echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                        <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+
+                }
+                else {
+                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/login.php\'">Log in</button>';
+                }
+                ?> 
+
                 </div>
             </div>
             <!-- /.navbar-collapse -->
@@ -80,8 +93,29 @@
         <!-- Projects Row -->
         <div class="row">
 			<?php
+                $numPerPage=9;
+
 				require_once (__DIR__."/../database/database.php");
-				$projects = getProjectsBrief();
+
+                $numProjects=getNumProjects();
+                $numPages=ceil($numProjects/$numPerPage);
+
+                if(isset($_GET['page'])&&is_numeric($_GET['page'])){
+                    if($_GET['page']>$numPages){
+                        $page=$numPages;
+                    }
+                    else if($_GET['page']<1){
+                        $page=1;
+                    }
+                    else{
+                        $page=$_GET['page'];
+                    }
+                }
+                else{
+                    $page=1;
+                }
+                
+				$projects = getProjectsBrief($numPerPage,(intval($page)-1)*$numPerPage);
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
 							<a href="project.php?id='.$project['id'].'">';
@@ -95,14 +129,21 @@
 							break;
 						}
 					}
-					echo '<img class="img-responsive" src="'.$photo_url.'" alt="">';
+                    if($photo_url!=""){
+					   echo '<div class="image-slot-height"><div class="image-slot"><img class="img-responsive" src="'.$photo_url.'" alt=""></div></div>';
+                    }
+                    else{
+                       echo '<div class="image-slot-default">No Image Available</div>';
+                    }
 					echo '</a>
 							<h3>
 								<a href="project.php?id='.$project['id'].'">';
 					
 					echo $project['project_name'];
 					echo '</a></h3>
-								<p>'.substr($project['description'], 0, 30).'</p></div>';
+								<p>'.substr($project['description'], 0, 318);
+                                if(strlen($project['description'])>318){echo ' ...';}
+                                echo '</p></div>';
 				}
 				
 			?>
@@ -115,27 +156,40 @@
         <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
+                    <?php
+                    echo '
+                        <li>
+                            <a href="index.php?page=';
+                            if($page>1){
+                                echo $page-1;
+                            }
+                            else{
+                                echo $page;
+                            }
+                            echo '">&laquo;</a>
+                        </li>';
+                    for($i=1;$i<=$numPages;$i++){
+                        echo '
+                        <li ';
+                        if($i==$page){
+                            echo 'class="active"';
+                        } 
+                        echo '>
+                            <a href="index.php?page='.$i.'">'.$i.'</a>
+                        </li>';
+                    }
+                    echo '
+                        <li>
+                            <a href="index.php?page=';
+                            if($page<$numPages){
+                                echo $page+1;
+                            }
+                            else{
+                                echo $page;
+                            }
+                            echo '">&raquo;</a>
+                        </li>';
+                    ?>
                 </ul>
             </div>
         </div>

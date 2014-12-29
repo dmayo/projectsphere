@@ -10,7 +10,8 @@
     <meta name="author" content="">
 
     <title>Project Sphere</title>
-
+    <link rel="shortcut icon" href="../login/images/favicon.ico" />
+    
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
@@ -54,8 +55,21 @@
                         <a href="#">Contact</a>
                     </li>
                 </ul>
-                 <div style="float:right;">
-                   <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href='../login/logout.php'">Log Out</button>
+                <div style="float:right;">
+
+                <?php
+                require "../login/config/config.php";
+                require "../login/checklogin.php";
+                if(isset($_COOKIE["upload_user"])&&isset($_COOKIE["user_code"])&&checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])==true) {
+                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                        <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+
+                }
+                else {
+                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/login.php\'">Log in</button>';
+                }
+                ?> 
+                
                 </div>
             </div>
             <!-- /.navbar-collapse -->
