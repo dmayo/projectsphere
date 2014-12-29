@@ -2,9 +2,23 @@
 	require_once (__DIR__."/pdo.php");
 	require_once (__DIR__."/../config/config.php");
 	
-	function getProjectsBrief($limit = 9999, $offset = 0) {
+	function getProjectsBrief($limit = 9999, $offset = 0, $category = "", $startGrade = "", $endGrade="") {
 		$pdo = getPDO();
-		$sql = "SELECT * FROM projects ORDER BY id DESC LIMIT :limit OFFSET :offset";
+		if (($startGrade == "" && $endGrade != "") || ($startGrade != "" && $endGrade == "")) {
+			throw new Exception("Invalid Function Input :(");
+		}
+		
+		
+		if ($category != "" &&  $startGrade!= "") {
+			$where = " WHERE category='$category' AND grade >= '$startGrade' AND grade <= '$endGrade' ";
+		} else if ($category != "") {
+			$where = " WHERE category='$category' ";
+		} else if ($startGrade!= "") {
+			$where = "WHERE grade >= '$startGrade' AND grade <= '$endGrade' ";
+		} else {
+			$where = "";
+		}
+		$sql = "SELECT * FROM projects $where ORDER BY id DESC LIMIT :limit OFFSET :offset";
 		$query = $pdo->prepare($sql);
 		$array = array('limit' => $limit, 'offset' => $offset);
 		$query->bindParam(':limit', $limit, PDO::PARAM_INT);
