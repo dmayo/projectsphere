@@ -78,57 +78,61 @@
                 <div class="dropdown" style="float:right;">
                   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     <?php
-                    if(!isset($_GET['grade'])){
-                        echo 'All Grades';
-                    }
-                    else{
+                    if(isset($_GET['grade'])&&!empty($_GET['grade'])){
                         echo $_GET['grade'];
                         $gradeDivision=$_GET['grade'];
                     }
+                    else{
+                        echo 'All Grades';
+                        $gradeDivision="";
+                    }
                     if(isset($_GET['category'])){
                         $category=$_GET['category'];
+                    }
+                    else{
+                        $category="";
                     }
                     ?>
 
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=All Grades<?php if(isset($category)){echo '&category='.$category;} ?>">All Grades</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=9-10<?php if(isset($category)){echo '&category='.$category;} ?>">9-10</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=11-12<?php if(isset($category)){echo '&category='.$category;} ?>">11-12</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=<?php if(!empty($category)){echo '&category='.$category;} ?>">All Grades</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=9-10<?php if(!empty($category)){echo '&category='.$category;} ?>">9-10</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=11-12<?php if(!empty($category)){echo '&category='.$category;} ?>">11-12</a></li>
                   </ul>
                 </div>
                 <div class="dropdown" style="float:right;padding-right:10px;">
                   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     <?php
-                    if(!isset($_GET['category'])){
+                    if(empty($category)){
                         echo 'All Categories';
                     }
                     else{
-                        echo $_GET['category'];
+                        echo $category;
                     }
                     ?>
                     <span class="caret"></span>
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=All Categories<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">All Categories</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=3D Modeling<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">3D Modeling</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Animated Graphic Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Animated Graphic Design</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Case Modification<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Case Modification</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Audio Production<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Audio Production</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Photography<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Photography</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Video Production<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Video Production</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Game Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Game Design</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Hardware<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Hardware</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Individual Programming Challenge<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Individual Programming Challenge</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Mobile Apps<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Mobile Apps</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Multimedia Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Multimedia Applications</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Animated Graphic Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Animated Graphic Design</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Multimedia Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Multimedia Applications</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Project Programming<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Project Programming</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Robotics<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Robotics</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Technology Literacy Challenge<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Technology Literacy Challenge</option></a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Web 2.0 Internet Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Web 2.0 Internet Applications</option></a></li>          
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">All Categories</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=3D Modeling<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">3D Modeling</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Animated Graphic Design<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Animated Graphic Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Case Modification<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Case Modification</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Audio Production<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Audio Production</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Photography<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Photography</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Video Production<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Video Production</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Game Design<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Game Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Hardware<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Hardware</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Individual Programming Challenge<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Individual Programming Challenge</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Mobile Apps<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Mobile Apps</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Multimedia Applications<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Multimedia Applications</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Animated Graphic Design<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Animated Graphic Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Multimedia Applications<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Multimedia Applications</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Project Programming<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Project Programming</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Robotics<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Robotics</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Technology Literacy Challenge<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Technology Literacy Challenge</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Web 2.0 Internet Applications<?php if(!empty($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Web 2.0 Internet Applications</option></a></li>          
                   </ul>
                 </div>
             </div>
@@ -160,7 +164,7 @@
                     $page=1;
                 }
                 
-				$projects = getProjectsBrief($numPerPage,(intval($page)-1)*$numPerPage);
+				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, 3, 3);
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
 							<a href="project.php?id='.$project['id'].'">';
@@ -212,10 +216,10 @@
                                 $i=$page;
                             }
                             $url = 'index.php?page='.$i;
-                            if(isset($gradeDivision)){
+                            if(!empty($gradeDivision)){
                                 $url .= '&grade='.$gradeDivision;
                             }
-                            if(isset($category)){
+                            if(!empty($category)){
                                 $url .= '&category='.$category;
                             }
                             echo $url;
@@ -228,10 +232,10 @@
                             echo 'class="active"';
                         }
                         $url = 'index.php?page='.$i;
-                        if(isset($gradeDivision)){
+                        if(!empty($gradeDivision)){
                             $url .= '&grade='.$gradeDivision;
                         }
-                        if(isset($category)){
+                        if(!empty($category)){
                             $url .= '&category='.$category;
                         }
                         echo '>
@@ -248,10 +252,10 @@
                                 $i=$page;
                             }
                             $url = 'index.php?page='.$i;
-                            if(isset($gradeDivision)){
+                            if(!empty($gradeDivision)){
                                 $url .= '&grade='.$gradeDivision;
                             }
-                            if(isset($category)){
+                            if(!empty($category)){
                                 $url .= '&category='.$category;
                             }
                             echo $url;
