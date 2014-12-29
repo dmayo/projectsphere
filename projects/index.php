@@ -93,8 +93,29 @@
         <!-- Projects Row -->
         <div class="row">
 			<?php
+                $numPerPage=9;
+
 				require_once (__DIR__."/../database/database.php");
-				$projects = getProjectsBrief();
+
+                $numProjects=getNumProjects();
+                $numPages=ceil($numProjects/$numPerPage);
+
+                if(isset($_GET['page'])&&is_numeric($_GET['page'])){
+                    if($_GET['page']>$numPages){
+                        $page=$numPages;
+                    }
+                    else if($_GET['page']<1){
+                        $page=1;
+                    }
+                    else{
+                        $page=$_GET['page'];
+                    }
+                }
+                else{
+                    $page=1;
+                }
+                
+				$projects = getProjectsBrief($numPerPage,(intval($page)-1)*$numPerPage);
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
 							<a href="project.php?id='.$project['id'].'">';
@@ -135,27 +156,40 @@
         <div class="row text-center">
             <div class="col-lg-12">
                 <ul class="pagination">
-                    <li>
-                        <a href="#">&laquo;</a>
-                    </li>
-                    <li class="active">
-                        <a href="#">1</a>
-                    </li>
-                    <li>
-                        <a href="#">2</a>
-                    </li>
-                    <li>
-                        <a href="#">3</a>
-                    </li>
-                    <li>
-                        <a href="#">4</a>
-                    </li>
-                    <li>
-                        <a href="#">5</a>
-                    </li>
-                    <li>
-                        <a href="#">&raquo;</a>
-                    </li>
+                    <?php
+                    echo '
+                        <li>
+                            <a href="index.php?page=';
+                            if($page>1){
+                                echo $page-1;
+                            }
+                            else{
+                                echo $page;
+                            }
+                            echo '">&laquo;</a>
+                        </li>';
+                    for($i=1;$i<=$numPages;$i++){
+                        echo '
+                        <li ';
+                        if($i==$page){
+                            echo 'class="active"';
+                        } 
+                        echo '>
+                            <a href="index.php?page='.$i.'">'.$i.'</a>
+                        </li>';
+                    }
+                    echo '
+                        <li>
+                            <a href="index.php?page=';
+                            if($page<$numPages){
+                                echo $page+1;
+                            }
+                            else{
+                                echo $page;
+                            }
+                            echo '">&raquo;</a>
+                        </li>';
+                    ?>
                 </ul>
             </div>
         </div>

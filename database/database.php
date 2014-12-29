@@ -12,12 +12,23 @@
 		$query->execute();
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
+
+	function getNumProjects(){
+		$pdo = getPDO();
+		$sql = "SELECT COUNT(*) FROM projects";
+		$query = $pdo->prepare($sql);
+		$query->execute();
+
+		$result = $query->fetch();
+		return $result[0];
+	}
+
 	function getProjectByID($id) {
 		$pdo = getPDO();
 		$sql = "SELECT * FROM projects WHERE id= :id LIMIT 1";
 		$query = $pdo->prepare($sql);
 		$query->execute(array('id' => $id));
-		return $query->fetch(PDO::FETCH_ASSOC);
+		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 	
 	//user functinos
