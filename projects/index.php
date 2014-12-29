@@ -164,7 +164,7 @@
                     $page=1;
                 }
                 
-				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, 3, 3);
+				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, "", "");
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
 							<a href="project.php?id='.$project['id'].'">';
