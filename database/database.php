@@ -48,8 +48,37 @@
 		$sql = "SELECT * FROM projects WHERE id= :id LIMIT 1";
 		$query = $pdo->prepare($sql);
 		$query->execute(array('id' => $id));
+		$result = $query->fetch(PDO::FETCH_ASSOC);
+		if ($result) {
+			$result['authorNames'] = getAuthorsFromIDs($result['authors']);
+			return $result;
+		} else {
+			return false;
+		}
+		
+	}
+	
+	function getAuthorsFromIDs($ids) {
+		$ids = split(",", $ids);
+		$authors = array();
+		foreach ($ids as $id)  {
+			if (!empty($id)) {
+				$name = getNameFromUserID($id);
+				$name['id'] = $id;
+				array_push($authors, $name);
+			}
+		}
+		return $authors;
+	}
+	
+	function getNameFromUserID($id) {
+		$pdo = getPDO();
+		$sql = "SELECT firstname, lastname FROM users WHERE id = :id";
+		$query = $pdo->prepare($sql);
+		$query->execute(array('id' => $id));
 		return $query->fetch(PDO::FETCH_ASSOC);
 	}
+	
 	
 	function addSkeletonUser($email, $firstname, $lastname) {
 		$pdo = getPDO();
