@@ -149,24 +149,6 @@
 
 				require_once (__DIR__."/../database/database.php");
 
-                $numProjects=getNumProjects();
-                $numPages=ceil($numProjects/$numPerPage);
-
-                if(isset($_GET['page'])&&is_numeric($_GET['page'])){
-                    if($_GET['page']>$numPages){
-                        $page=$numPages;
-                    }
-                    else if($_GET['page']<1){
-                        $page=1;
-                    }
-                    else{
-                        $page=$_GET['page'];
-                    }
-                }
-                else{
-                    $page=1;
-                }
-                    
                 if(empty($gradeDivision)){
                     $startGrade="";
                     $endGrade="";
@@ -182,6 +164,24 @@
                     $gradeRange=explode(',', $gradeLookup[$gradeDivision]);
                     $startGrade=$gradeRange[0];
                     $endGrade=$gradeRange[1];
+                }
+
+                $numProjects=getNumProjects($category,  $startGrade, $endGrade);
+                $numPages=ceil($numProjects/$numPerPage);
+
+                if(isset($_GET['page'])&&is_numeric($_GET['page'])){
+                    if($_GET['page']>$numPages){
+                        $page=$numPages;
+                    }
+                    else if($_GET['page']<1){
+                        $page=1;
+                    }
+                    else{
+                        $page=$_GET['page'];
+                    }
+                }
+                else{
+                    $page=1;
                 }
 
 				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, $startGrade, $endGrade);

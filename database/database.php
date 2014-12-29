@@ -35,10 +35,31 @@
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
 
-	function getNumProjects(){
+	function getNumProjects($category = "", $startGrade = "", $endGrade=""){
+		if (($startGrade == "" && $endGrade != "") || ($startGrade != "" && $endGrade == "")) {
+			throw new Exception("Invalid Function Input :(");
+		}
+
+		if ($category != "" &&  $startGrade!= "") {
+			$where = " WHERE category=:category AND grade >= :startGrade AND grade <= :endGrade ";
+		} else if ($category != "") {
+			$where = " WHERE category=:category ";
+		} else if ($startGrade!= "") {
+			$where = "WHERE grade >= :startGrade AND grade <= :endGrade";
+		} else {
+			$where = "";
+		}
+
 		$pdo = getPDO();
-		$sql = "SELECT COUNT(*) FROM projects";
+		$sql = "SELECT COUNT(*) FROM projects $where";
 		$query = $pdo->prepare($sql);
+		if ($category != "") {
+			$query->bindParam(':category', $category, PDO::PARAM_STR);
+		}
+		if ($startGrade!="") {
+			$query->bindParam(':startGrade', $startGrade, PDO::PARAM_INT);
+			$query->bindParam(':endGrade', $endGrade, PDO::PARAM_INT);
+		}
 		$query->execute();
 		$result = $query->fetch();
 		return $result[0];
