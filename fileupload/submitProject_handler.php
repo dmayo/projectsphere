@@ -2,6 +2,7 @@
 
 	require "../login/checklogin.php";
 	require "../login/config/config.php";
+	require "../login/invite/invite.php";
 
 	$id = checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"]);
 	if(!isset($_COOKIE["upload_user"])||!isset($_COOKIE["user_code"])||!$id) {
@@ -112,6 +113,7 @@
 					throw new InvalidTeammateException("Please enter a valid name for you're teammate.");
 				}
 				$teammateID = addSkeletonUser($teammate_email, $teammate_first_name, $teammate_last_name);
+				inviteUser($teammate_email);
 			}
 		} else {
 			throw new InvalidTeammateException("The email you entered for you're teammate is invalid.");

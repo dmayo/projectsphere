@@ -26,12 +26,12 @@
                         You're account has been successfully registered.
 						<br /> Now you just have to activate your account by entering the activation code sent to your email.
                         <form class="form-signin" action="activate.php" method="get">
-                            <input type="text" class="form-control form-signin-Single" placeholder="Activation Code" required autofocus>
+                            <input type="text" name="userid" class="form-control form-signin-Single" placeholder="Activation Code" required autofocus>
 							<input type="submit" class="btn btn-lg btn-default btn-block" value="Activate" />
                         </form>
                         If you did not recieve an e-mail please enter your email address to resend the activation code.
                         <form class="form-signin" action="send.php" method="post">
-                            <input type="text" class="form-control form-signin-Single" placeholder="email" required autofocus>
+                            <input type="text" name="email" class="form-control form-signin-Single" placeholder="email" required autofocus>
 							<input type="submit" class="btn btn-lg btn-default btn-block" value="Resend Activation Email" />
                         </form>
                     </div>
