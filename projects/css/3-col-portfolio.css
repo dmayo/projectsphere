@@ -1,90 +1,102 @@
-/*!
- * Start Bootstrap - 3 Col Portfolio HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
+	/*!
+	 * Start Bootstrap - 3 Col Portfolio HTML Template (http://startbootstrap.com)
+	 * Code licensed under the Apache License v2.0.
+	 * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+	 */
 
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-    background-color:#E9EAED;
-}
+	body {
+	    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+	    background-color:#E9EAED;
+	}
 
-.project-container{
-	background-color:white;
-	width:100%;
-	border-radius:10px;
-	padding:10px 20px 10px 20px;
-}
+	.page-container{
+		background-color:white;
+		width:100%;
+		border-radius:10px;
+		padding:10px 20px 10px 20px;
+	}
 
-.portfolio-item {
-    margin: 0px 10px 25px 10px;
-    xmargin-bottom: 25px;
-    xmax-width:100%;
-    max-width:360px;
-    min-height:500px;
-    xpadding: 20px 20px 20px 20px;
-    padding-left:0px;
-    padding-right:0px;
-    border-radius: 6px;
-    color: black;
-	xbackground-color: #BBBBBB;
-	background-color:#FFFFFF;
-	xbox-shadow: 2px 2px 10px #DFE0E4;
-	border:2px solid #DFE0E4;
-	position: relative;
-}
+	.portfolio-item {
+	    margin: 0px 10px 25px 10px;
+	    xmargin-bottom: 25px;
+	    xmax-width:100%;
+	    width:370px;
+	    height:500px;
+	    xpadding: 20px 20px 20px 20px;
+	    padding-left:0px;
+	    padding-right:0px;
+	    border-radius: 6px;
+	    color: black;
+		xbackground-color: #BBBBBB;
+		background-color:#FFFFFF;
+		xbox-shadow: 2px 2px 10px #DFE0E4;
+		border:2px solid #DFE0E4;
+		xposition: relative;
+	}
 
-.portfolio-item a:hover{
-	text-decoration:none;
-}
-.portfolio-item-top{
-	border-top-left-radius: 6px;
-	border-top-right-radius:6px;
-	background-color:#F6F7F8;
-	width:100%;
-	height:230px;
-	padding: 20px 20px 0px 20px;
-}
-.portfolio-item-bottom{
-	border-bottom-left-radius: 6px;
-	border-bottom-right-radius:6px;
-	width:100%;
-	padding: 0px 20px 20px 20px;
-}
-.image-slot{
-	xborder-top-left-radius: 10px;
-	xborder-top-right-radius: 10px;
-	xbackground-color: #F6F7F8;
-	width:100%;
-	max-height: 200px;
-	position: relative;
-	text-align:center;
-}
+	.portfolio-item a:hover{
+		text-decoration:none;
+	}
+	.portfolio-item-top{
+		border-top-left-radius: 6px;
+		border-top-right-radius:6px;
+		background-color:#F6F7F8;
+		width:100%;
+		height:230px;
+		padding: 20px 20px 0px 20px;
+	}
+	.portfolio-item-bottom{
+		border-bottom-left-radius: 6px;
+		border-bottom-right-radius:6px;
+		width:100%;
+		padding: 0px 20px 20px 20px;
+	}
+	.image-slot{
+		xborder-top-left-radius: 10px;
+		xborder-top-right-radius: 10px;
+		xbackground-color: #F6F7F8;
+		width:100%;
+		max-height: 200px;
+		position: relative;
+		text-align:center;
+	}
 
-.image-slot-height{
-	height:200px;
-}
+	.image-slot-height{
+		height:200px;
+	}
 
-.image-slot-default{
-	xborder-top-left-radius: 10px;
-	xborder-top-right-radius: 10px;
-	background-color: #cccccc;
-	width:100%;
-	height:200px;
-	text-align:center;
-	color:white;
-	font-size:25px;
-	padding-top:75px;
+	.image-slot-default{
+		xborder-top-left-radius: 10px;
+		xborder-top-right-radius: 10px;
+		background-color: #cccccc;
+		width:100%;
+		height:200px;
+		text-align:center;
+		color:white;
+		font-size:25px;
+		padding-top:75px;
 
-}
-.image-slot img{
-    display:block;
-   	margin-left: auto;
-    margin-right: auto;
-    vertical-align: middle;
-    max-height:200px;
-}
+	}
+	.image-slot img{
+	    display:block;
+	   	margin-left: auto;
+	    margin-right: auto;
+	    vertical-align: middle;
+	    max-height:200px;
+	}
 
-footer {
-    margin: 50px 0;
-}
+	footer {
+	    margin: 50px 0;
+	}
+
+	.row-centered {
+	    text-align:center;
+	}
+	.col-centered {
+	    display:inline-block;
+	    xfloat:center;
+	    /* reset the text-align */
+	    text-align:left;
+	    /* inline-block space fix */
+	    xmargin-right:-4px;
+	}

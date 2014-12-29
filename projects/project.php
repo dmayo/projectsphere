@@ -30,7 +30,7 @@
 
 </head>
 
-<body>
+<body style="margin:30px;padding:30px;">
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -70,8 +70,8 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container" >
-        <div class="project-container">
+    <div class="container">
+        <div class="page-container">
     <?php
         $projectID = $_GET['id'];
         require_once (__DIR__."/../database/database.php");

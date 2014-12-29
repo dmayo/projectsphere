@@ -74,7 +74,7 @@
             <div class="col-lg-6">
                 <h1 class="page-header">Project Gallery</h1>
             </div>
-            <div class="col-lg-6" style="padding-top:50px;padding-right:70px;">
+            <div class="col-lg-6" style="padding-top:50px;">
                 <div class="dropdown" style="float:right;">
                   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
                     <?php
@@ -143,7 +143,7 @@
         <!-- /.row -->
 
         <!-- Projects Row -->
-        <div class="row">
+        <div class="row row-centered">
 			<?php
                 $numPerPage=9;
 
@@ -166,7 +166,7 @@
                 else{
                     $page=1;
                 }
-                
+                    
                 if(empty($gradeDivision)){
                     $startGrade="";
                     $endGrade="";
@@ -186,7 +186,7 @@
 
 				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, $startGrade, $endGrade);
 				foreach ($projects as $project) {
-					echo '<div class="col-md-4 portfolio-item">
+					echo '<div class="col-md-4 col-centered portfolio-item">
                             <div class="portfolio-item-top">
 							<a href="project.php?id='.$project['id'].'">';
 

@@ -24,7 +24,7 @@ else{
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
 
     <!-- Custom CSS -->
-    <link href="css/3-col-portfolio.css" rel="stylesheet">
+    <link href="../projects/css/3-col-portfolio.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -33,13 +33,13 @@ else{
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<script src="//cdn.ckeditor.com/4.4.6/standard/ckeditor.js"></script>
-	<!-- Generic page styles -->
-	<link rel="stylesheet" href="css/style.css">
+
 	<!-- blueimp Gallery styles -->
 	<link rel="stylesheet" href="//blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
 	<!-- CSS to style the file input field as button and adjust the Bootstrap progress bars -->
 	<link rel="stylesheet" href="css/jquery.fileupload.css">
 	<link rel="stylesheet" href="css/jquery.fileupload-ui.css">
+
 </head>
 <body>
 
@@ -73,7 +73,7 @@ else{
 
     <!-- Page Content -->
     <div class="container">
-
+        <div class="page-container" style="padding-left:40px;padding-right:40px;margin-bottom:60px;">
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
@@ -85,77 +85,83 @@ else{
         <!-- Projects Row -->
         <div class="row">
 	<form id="project_form" action="submitProject_handler.php" method="post">
-	<table>
-		<tr>
-			<td>Project Name:</td><td><input type="text" name="projectName" /></td>
-		</tr>
-		<tr>
-			<td>Teammate Email:</td><td><input type="text" name="team_email" /></td>
-		</tr>
-		<tr>
-			<td>Teamate First Name:</td><td><input type="text" name="team_first_name" />
-		</tr>
-		<tr>
-			</td><td>Teammate Last Name:</td><td><input type="text" name="team_last_name" /></td>
-		</tr>
-		<tr>
-			
-			<td>Category:</td>
-			<td>
-				<select name="category">
-					<option value="3D Modeling">3D Modeling</option>
-					<option value="Animated Graphic Design">Animated Graphic Design</option>
-					<option value="Case Modification">Case Modification</option>
-					<option value="Digital Audio Production">Digital Audio Production</option>
-					<option value="Digital Photography">Digital Photography</option>
-					<option value="Digital Video Production">Digital Video Production</option>
-					<option value="Game Design">Game Design</option>
-					<option value="Hardware">Hardware</option>
-					<option value="Individual Programming Challenge">Individual Programming Challenge</option>
-					<option value="Mobile Apps">Mobile Apps</option>
-					<option value="Multimedia Applications">Multimedia Applications</option>
-					<option value="Non-Animated Graphic Design">Non-Animated Graphic Design</option>
-					<option value="Non-Multimedia Applications">Non-Multimedia Applications</option>
-					<option value="Project Programming">Project Programming</option>
-					<option value="Robotics">Robotics</option>
-					<option value="Technology Literacy Challenge">Technology Literacy Challenge</option>
-					<option value="Web 2.0 Internet Applications">Web 2.0 Internet Applications</option>
-					
-				</select>
-			</td>
-		</tr>
-		<tr>
-			<td>Grade:</td><td><input type="text" name="grade" /></td>
-		</tr>
-		<tr>
-			<td>School:</td><td><input type="text" name="school" /></td>
-		</tr>
-		<tr>
-			<td>Competition:</td><td><input type="text" name="competition" /></td>
-		</tr>
-		<tr>
-			<td>Video Link:</td><td><input type="text" name="video_link" /></td>
-		</tr>
-		<tr>
-			<td>Website Link:</td><td><input type="text" name="website_link" /></td>
-		</tr>
-		
-	
-		
-	
-	</table>
-	
-		Description:<br />
-		<textarea name="description"></textarea>
-		<br /><br />
-		Sources:<br /><textarea name="sources"></textarea>
-	<br />
-	<input type="hidden" name="photos" id="imageinput"></input>
-	
+        <div class="form-group">
+            <label for="projectName">Project Name</label>
+            <input type="text" class="form-control" name="projectName" />
+        </div>  
+        <div class="form-group">
+            <label for="team_email">Teammate Email</label>
+            <input type="text" class="form-control" name="team_email" />
+        </div>
+        <div class="form-group">
+            <label for="team_first_name">Teamate First Name</label>
+            <input type="text" class="form-control" name="team_first_name" />
+        </div>
+        <div class="form-group">
+            <label for="team_last_name">Teammate Last Name</label>
+            <input type="text" class="form-control" name="team_last_name" />
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" name="category">
+                <option value="3D Modeling">3D Modeling</option>
+                <option value="Animated Graphic Design">Animated Graphic Design</option>
+                <option value="Case Modification">Case Modification</option>
+                <option value="Digital Audio Production">Digital Audio Production</option>
+                <option value="Digital Photography">Digital Photography</option>
+                <option value="Digital Video Production">Digital Video Production</option>
+                <option value="Game Design">Game Design</option>
+                <option value="Hardware">Hardware</option>
+                <option value="Individual Programming Challenge">Individual Programming Challenge</option>
+                <option value="Mobile Apps">Mobile Apps</option>
+                <option value="Multimedia Applications">Multimedia Applications</option>
+                <option value="Non-Animated Graphic Design">Non-Animated Graphic Design</option>
+                <option value="Non-Multimedia Applications">Non-Multimedia Applications</option>
+                <option value="Project Programming">Project Programming</option>
+                <option value="Robotics">Robotics</option>
+                <option value="Technology Literacy Challenge">Technology Literacy Challenge</option>
+                <option value="Web 2.0 Internet Applications">Web 2.0 Internet Applications</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="grade">Grade</label>
+            <input type="text" class="form-control" name="grade" />
+        </div>
+        <div class="form-group">
+            <label for="school">School</label>
+            <input type="text" class="form-control" name="school" />
+        </div>
+        <div class="form-group">
+            <label for="competition">Competition</label>
+            <input type="text" class="form-control" name="competition" />
+        </div>
+        <div class="form-group">
+            <label for="video_link">Video Link</label>
+            <input type="text" class="form-control" name="video_link" />
+        </div>
+        <div class="form-group">
+            <label for="website_link">Website Link</label>
+            <input type="text" class="form-control" name="website_link" />
+        </div>
+    		
+
+
+        <div class="form-group">
+            <label for="name">Project Description</label>
+            <textarea class="form-control" name="description" rows="15" placeholder="What did you create?"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="sources">Sources</label>
+            <textarea class="form-control" name="sources" rows="8" placeholder="What sources did you use?"></textarea>
+        </div>
+
+    	<input type="hidden" name="photos" id="imageinput"></input>
+    	
 	</form>
 	
 	
 	<form id="fileupload" action="//jquery-file-upload.appspot.com/" method="POST" enctype="multipart/form-data">
+        <label>Upload images</label>
         <!-- Redirect browsers with JavaScript disabled to the origin page -->
         <div class="row fileupload-buttonbar">
             <div class="col-lg-7">
@@ -205,7 +211,7 @@ else{
     <ol class="indicator"></ol>
 </div>
 <br />
-<input type="submit" form="project_form"></input>
+<input type="submit" form="project_form" class="btn btn-default"></input>
 
        </div>
         <!-- /.row -->
@@ -221,7 +227,7 @@ else{
             </div>
             <!-- /.row -->
         </footer>
-
+    </div>
     </div>
     <!-- /.container -->
 
