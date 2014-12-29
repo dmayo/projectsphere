@@ -25,8 +25,10 @@ require "rndPass.class.php";
 		}
 
 	}
-function adduser($email,$user,$pass,$pass1){
+function adduser($email, $firstname, $lastname, $user,$pass,$pass1){
 	require "config/config.php";
+	$firstname = preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($firstname));
+	$lastname = preg_replace("/[^A-Za-z0-9 ]/", '', strtolower($lastname));
 	$pass= ereg_replace("[^A-Za-z0-9]", "", $pass);
 	$user = ereg_replace("[^A-Za-z0-9]", "", $user);
 	$pass=strtolower($pass);
@@ -37,7 +39,7 @@ function adduser($email,$user,$pass,$pass1){
 	$user1=strtolower($user1);
 	$email=strtolower($email);
 	$empty='';
-
+	$updateSkeleton = false;
 	if($user==''){
 		$empty=1;
 	}
@@ -46,6 +48,9 @@ function adduser($email,$user,$pass,$pass1){
 	}
 	if($email==''){
 		$empty=1;
+	}
+	if ($firstname=="" || $lastname=="") {
+		$empty = 1;
 	}
 	if($empty==1){
 		$msg='
@@ -102,15 +107,19 @@ function adduser($email,$user,$pass,$pass1){
 		$query= "SELECT * FROM $db_table WHERE email='$email'";
 	    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 
-	    while($row = mysql_fetch_array($result)) {
+	    if($row = mysql_fetch_array($result)) {
 	        if( $row['email']==$email) {
-				$msg='
-				<script type="text/javascript">
-				document.getElementById("password").value="";
-				document.getElementById("password1").value="";
-				</script>
-				The email is already registered to another account.';
-				return $msg;
+				if (!empty($row['user_name'])) {
+					$msg='
+					<script type="text/javascript">
+					document.getElementById("password").value="";
+					document.getElementById("password1").value="";
+					</script>
+					The email is already registered to another account.';
+					return $msg;
+				} else {
+					$updateSkeleton = true;
+				}
 	        }
 		}
 
@@ -128,10 +137,13 @@ function adduser($email,$user,$pass,$pass1){
 		
 		if($user=="administrator"){
 			$query="INSERT INTO  $db_table (email, user_name, password, usercode, filespace, activate) VALUES ('$email','$user','$pass','$usercode','0','0')";
-		}
-		else{
-			$query="INSERT INTO  $db_table (email, user_name, password, usercode, filespace, activate) VALUES ('$email','$user','$pass','$usercode','1000','0')";
-		}
+		} else if ($updateSkeleton) {
+			$query="UPDATE  $db_table  SET email='$email', user_name='$user', password='$pass', usercode='$usercode', 
+						filespace='1000', activate='0', firstname='$firstname', lastname='$lastname' WHERE email='$email'";
+		} else {
+			$query="INSERT INTO  $db_table (email, user_name, password, usercode, filespace, activate, firstname, lastname) 
+						VALUES ('$email','$user','$pass','$usercode','1000','0', '$firstname', '$lastname')";
+		} 
 		
 	    $result = mysql_query($query) or die('Query failed: ' . mysql_error());
 		
@@ -215,8 +227,10 @@ $ajax = new PHPLiveX(array("adduser","check1"));
             username = document.getElementById("username").value;
             password = document.getElementById("password").value;
 			password1 = document.getElementById("password1").value;
+			firstname = document.getElementById("firstname").value;
+			lastname = document.getElementById("lastname").value;
 			
-			adduser (email, username, password, password1, {"method":"POST",'target':'msg','preloader':'pr'});
+			adduser (email, firstname, lastname, username, password, password1, {"method":"POST",'target':'msg','preloader':'pr'});
         }
 
 		function processForm(){
@@ -264,10 +278,11 @@ $ajax = new PHPLiveX(array("adduser","check1"));
 	                        <br />
 	                        <form class="form-signin" name="register" id="register" action="process.php" method="post">
 	                            <input type="text" class="form-control form-signin-Top" placeholder="Email" id="email" name="email" required autofocus>
+								<input type="text" class="form-control form-signin-Middle" placeholder="First Name" id="firstname" name="firstname">
+								<input type="text" class="form-control form-signin-Middle" placeholder="Last Name" id="lastname" name="lastname">
 	                            <input type="text" class="form-control form-signin-Middle" placeholder="User Name" id="username" name="username">
 	                            <input type="password" class="form-control form-signin-Middle" placeholder="Password" id="password" name="password">
 	                            <input type="password" class="form-control form-signin-Bottom" placeholder="Confirm Password" id="password1" name="password1">
-
  								<img id="captcha" src="securimage/securimage_show.php" alt="CAPTCHA Image" />
  								<br />
          						<a href="#" onclick="document.getElementById('captcha').src = 'securimage/securimage_show.php?' + Math.random(); return false">Reload Image</a>

@@ -105,11 +105,12 @@
 	$teammateID = false;
 	if (!empty($teammate_email)) {
 		if (filter_var($teammate_email, FILTER_VALIDATE_EMAIL)) {
-			if (empty($teammate_first_name) || empty($teammate_last_name)) {
-				throw new InvalidTeammateException("Please enter a valid name for you're teammate.");
-			}
+			
 			$teammateID = getUserIDByEmail($teammate_email);
 			if ($teammateID == -1) {
+				if (empty($teammate_first_name) || empty($teammate_last_name)) {
+					throw new InvalidTeammateException("Please enter a valid name for you're teammate.");
+				}
 				$teammateID = addSkeletonUser($teammate_email, $teammate_first_name, $teammate_last_name);
 			}
 		} else {
