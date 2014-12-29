@@ -30,6 +30,16 @@
 		return $query->fetch(PDO::FETCH_ASSOC);
 	}
 	
+	function addSkeletonUser($email, $firstname, $lastname) {
+		$pdo = getPDO();
+		$sql = "INSERT INTO users(email, firstname, lastname) 
+					VALUES (:email, :firstname, :lastname)";
+		$query = $pdo->prepare($sql);
+		$query->execute(array('email' => $email, 'firstname' => $firstname,
+								'lastname' => $lastname));
+		return $pdo->lastInsertId();
+	}
+	
 	//user functinos
 	function getUserIDByEmail($email) {
 		$pdo = getPDO();
