@@ -65,8 +65,6 @@
 			if (!empty($id)) {
 				$name = getNameFromUserID($id);
 				$name['id'] = $id;
-				
-				var_dump ($name);
 				array_push($authors, $name);
 			}
 		}
