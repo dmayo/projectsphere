@@ -50,12 +50,12 @@
                 require "../login/config/config.php";
                 require "../login/checklogin.php";
                 if(isset($_COOKIE["upload_user"])&&isset($_COOKIE["user_code"])&&checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])==true) {
-                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
-                        <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+                   echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/logout.php\'"><i class="glyphicon glyphicon-log-out"></i> Log Out</button>';
 
                 }
                 else {
-                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/login.php\'">Log in</button>';
+                    echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/login.php\'"><i class="glyphicon glyphicon-log-in"></i> Log in</button>';
                 }
                 ?> 
                 
