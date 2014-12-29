@@ -14,18 +14,22 @@
 		} else if ($category != "") {
 			$where = " WHERE category=':category' ";
 		} else if ($startGrade!= "") {
-			$where = "WHERE grade >= ':startGrade' AND grade <= ':endGrade' ";
+			$where = "WHERE grade >= :startGrade AND grade <= :endGrade";
 		} else {
 			$where = "";
 		}
 		$sql = "SELECT * FROM projects $where ORDER BY id DESC LIMIT :limit OFFSET :offset";
 		$query = $pdo->prepare($sql);
 		
-		$query->bindParam(':category', $category, PDO::PARAM_STR);
+		if ($category != "")
+			$query->bindParam(':category', $category, PDO::PARAM_STR);
 		$query->bindParam(':limit', $limit, PDO::PARAM_INT);
 		$query->bindParam(':offset', $offset, PDO::PARAM_INT);
-		$query->bindParam(':startGrade', $startGrade, PDO::PARAM_INT);
-		$query->bindParam(':endGrade', $endGrade, PDO::PARAM_INT);
+		
+		if ($startGrade!="") {
+			$query->bindParam(':startGrade', $startGrade, PDO::PARAM_INT);
+			$query->bindParam(':endGrade', $endGrade, PDO::PARAM_INT);
+		}
 		$query->execute();
 		return $query->fetchAll(PDO::FETCH_ASSOC);
 	}
