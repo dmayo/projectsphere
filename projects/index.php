@@ -98,9 +98,12 @@
                   </button>
                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                     <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=<?php if(!empty($category)){echo '&category='.$category;} ?>">All Grades</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=9-10<?php if(!empty($category)){echo '&category='.$category;} ?>">9-10</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=11-12<?php if(!empty($category)){echo '&category='.$category;} ?>">11-12</a></li>
-                  </ul>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=11th - 12th<?php if(!empty($category)){echo '&category='.$category;} ?>">11th - 12th</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=9th - 10th<?php if(!empty($category)){echo '&category='.$category;} ?>">9th - 10th</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=7th - 8th<?php if(!empty($category)){echo '&category='.$category;} ?>">7th - 8th</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=5th - 6th<?php if(!empty($category)){echo '&category='.$category;} ?>">5th - 6th</a></li>
+                     <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=3rd - 4th<?php if(!empty($category)){echo '&category='.$category;} ?>">3rd - 4th</a></li>
+                 </ul>
                 </div>
                 <div class="dropdown" style="float:right;padding-right:10px;">
                   <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
@@ -164,7 +167,24 @@
                     $page=1;
                 }
                 
-				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, "", "");
+                if(empty($gradeDivision)){
+                    $startGrade="";
+                    $endGrade="";
+                }
+                else{
+                    $gradeLookup = [
+                        "11th - 12th" => "11,12",
+                        "9th - 10th" => "9,10",
+                        "7th - 8th" => "7,8",
+                        "5th - 6th" => "5,6",
+                        "3rd - 4th" => "3,4",
+                    ];
+                    $gradeRange=explode(',', $gradeLookup[$gradeDivision]);
+                    $startGrade=$gradeRange[0];
+                    $endGrade=$gradeRange[1];
+                }
+
+				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, $startGrade, $endGrade);
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
                             <div class="portfolio-item-top">
