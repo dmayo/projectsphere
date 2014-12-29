@@ -73,9 +73,6 @@ else{
 			<td>Competition:</td><td><input type="text" name="competition" /></td>
 		</tr>
 		<tr>
-			<td>Year:</td><td><input type="text" name="year" /></td>
-		</tr>
-		<tr>
 			<td>Video Link:</td><td><input type="text" name="video_link" /></td>
 		</tr>
 		<tr>

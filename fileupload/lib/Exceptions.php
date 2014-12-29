@@ -7,7 +7,4 @@ class InvalidInputException extends DMASException {
 
 class InvalidTeammateException extends InvalidInputException {
 }
-
-
-
 ?>
