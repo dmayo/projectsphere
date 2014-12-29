@@ -167,6 +167,7 @@
 				$projects = getProjectsBrief($numPerPage, (intval($page)-1)*$numPerPage, $category, "", "");
 				foreach ($projects as $project) {
 					echo '<div class="col-md-4 portfolio-item">
+                            <div class="portfolio-item-top">
 							<a href="project.php?id='.$project['id'].'">';
 
 					$photos = split('<',$project['photos']);
@@ -185,14 +186,19 @@
                        echo '<div class="image-slot-default">No Image Available</div>';
                     }
 					echo '</a>
-							<h3>
-								<a href="project.php?id='.$project['id'].'">';
-					
-					echo $project['project_name'];
-					echo '</a></h3>
-								<p>'.substr($project['description'], 0, 318);
-                                if(strlen($project['description'])>318){echo ' ...';}
-                                echo '</p></div>';
+                        </div>
+                        <div class="portfolio-item-bottom">
+							<h3 style="padding-bottom:0px;margin-bottom:0px;">
+							     <a href="project.php?id='.$project['id'].'">';
+					           echo $project['project_name'];
+					        echo '</a></h3>
+                            <p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:#337ab7;"><i>By: David Mayo, Albert Shaw</i></p>
+							<p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:green;"><i>Individual Programming Challenge - 11th&12th</i></p>
+                            
+                            
+                            <p>'.substr($project['description'], 0, 318);
+                            if(strlen($project['description'])>318){echo ' ...';}
+                            echo '</p></div></div>';
 				}
 				
 			?>
