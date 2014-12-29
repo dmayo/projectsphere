@@ -19,6 +19,19 @@
 		$query->execute(array('id' => $id));
 		return $query->fetch(PDO::FETCH_ASSOC);
 	}
+	
+	//user functinos
+	function getUserIDByEmail($email) {
+		$pdo = getPDO();
+		$sql = "SELECT id FROM users WHERE email = :email LIMIT 1";
+		$query = $pdo->prepare($sql);
+		$query->execute(array('email' => $email));
+		if($row = $query->fetch(PDO::FETCH_ASSOC)) {
+			return $row['id'];
+		} else {
+			return -1;
+		}
+	}
 	/*
 	function getPhotoUrl($id) {
 		if(is_int($id)) {
