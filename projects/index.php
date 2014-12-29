@@ -204,13 +204,21 @@
                     <?php
                     echo '
                         <li>
-                            <a href="index.php?page=';
+                            <a href="';
                             if($page>1){
-                                echo $page-1;
+                                $i=$page-1;
                             }
                             else{
-                                echo $page;
+                                $i=$page;
                             }
+                            $url = 'index.php?page='.$i;
+                            if(isset($gradeDivision)){
+                                $url .= '&grade='.$gradeDivision;
+                            }
+                            if(isset($category)){
+                                $url .= '&category='.$category;
+                            }
+                            echo $url;
                             echo '">&laquo;</a>
                         </li>';
                     for($i=1;$i<=$numPages;$i++){
@@ -218,20 +226,35 @@
                         <li ';
                         if($i==$page){
                             echo 'class="active"';
-                        } 
+                        }
+                        $url = 'index.php?page='.$i;
+                        if(isset($gradeDivision)){
+                            $url .= '&grade='.$gradeDivision;
+                        }
+                        if(isset($category)){
+                            $url .= '&category='.$category;
+                        }
                         echo '>
-                            <a href="index.php?page='.$i.'">'.$i.'</a>
+                            <a href="'.$url.'">'.$i.'</a>
                         </li>';
                     }
                     echo '
                         <li>
-                            <a href="index.php?page=';
+                            <a href="';
                             if($page<$numPages){
-                                echo $page+1;
+                                $i=$page+1;
                             }
                             else{
-                                echo $page;
+                                $i=$page;
                             }
+                            $url = 'index.php?page='.$i;
+                            if(isset($gradeDivision)){
+                                $url .= '&grade='.$gradeDivision;
+                            }
+                            if(isset($category)){
+                                $url .= '&category='.$category;
+                            }
+                            echo $url;
                             echo '">&raquo;</a>
                         </li>';
                     ?>
