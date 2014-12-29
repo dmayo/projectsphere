@@ -18,6 +18,9 @@
     <!-- Custom CSS -->
     <link href="css/3-col-portfolio.css" rel="stylesheet">
 
+    <!--lightbox-->
+    <link href="css/lightbox.css" rel="stylesheet" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -67,8 +70,8 @@
     </nav>
 
     <!-- Page Content -->
-    <div class="container">
-
+    <div class="container" >
+        <div class="project-container">
     <?php
         $projectID = $_GET['id'];
         require_once (__DIR__."/../database/database.php");
@@ -77,34 +80,35 @@
 			echo '
 				<div class="row">
 					<div class="col-lg-12">
-						<h1 class="page-header">' . $project['project_name'] . '
-							<!--<small>project programming</small>-->
+						<h1 class="page-header" style="margin-bottom:0px;">' . $project['project_name'] . '
+							<small>'.$project['category'].', '.$project['grade'].'th</small>
 						</h1>
 					</div>
-				</div>
-			
-			';
-			echo '<div clas="row">';
-				echo '<div class="col-md-4 portfolio-item">
-						<a href="project.php?id='.$project['id'].'">';
 
+			';
+		
+				echo '<div class="col-lg-12">';
+        //echo '<p>''</p>';
+        echo '<h3>Authors</h3>David Mayo and Albert Shaw';
+        echo '<h3>Project Description</h3>';
+        echo '<p>'.$project['description'].'</p>';
+        echo '<h3>Sources</h3>';
+        echo '<p>'.$project['sources'].'</p>';
+        echo '<hr />';
+        echo '<h3>Pictures</h3>';
         $photos = split('<',$project['photos']);
         $photo_url = "";
-        foreach ($photos as $photo)  {
-        	$photo_url= $photo;
-        	//$photo_url=getPhotoUrl($photo);
-        	if(!empty($photo_url)) {
-        		break;
-        	}
+        foreach ($photos as $photo){
+            if(!empty($photo)){
+                $photo_url= $photo;
+                echo '<div class="col-lg-6" style="height:400px;">';
+                echo '<a data-lightbox="project-images" href="'.$photo_url.'"><img class="img-responsive" src="'.$photo_url.'" alt="" style="max-height:400px;max-width:500px;padding:10px 10px 10px 10px;"></a>';
+                echo '</div>';
+            }
         }
-        echo '<img class="img-responsive" src="'.$photo_url.'" alt="">';
-        echo '</a><p>'.substr($project['description'], 0, 30).'</p></div>';
-		
-		echo '</div>';
+		echo '</div></div>';
         ?>
         <!-- /.row -->
-
-        
 
         <!-- Footer -->
         <footer>
@@ -115,13 +119,14 @@
             </div>
             <!-- /.row -->
         </footer>
-
+</div>
     </div>
     <!-- /.container -->
 
     <!-- jQuery -->
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!--lightbox-->
+    <script src="js/lightbox.min.js"></script>
     <!-- Bootstrap Core JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
 

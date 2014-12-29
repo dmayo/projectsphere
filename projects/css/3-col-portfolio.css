@@ -9,6 +9,13 @@ body {
     background-color:#E9EAED;
 }
 
+.project-container{
+	background-color:white;
+	width:100%;
+	border-radius:10px;
+	padding:10px 20px 10px 20px;
+}
+
 .portfolio-item {
     margin: 0px 10px 25px 10px;
     xmargin-bottom: 25px;

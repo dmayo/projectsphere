@@ -10,9 +10,9 @@
 		
 		
 		if ($category != "" &&  $startGrade!= "") {
-			$where = " WHERE category=':category' AND grade >= ':startGrade' AND grade <= ':endGrade' ";
+			$where = " WHERE category=:category AND grade >= :startGrade AND grade <= :endGrade ";
 		} else if ($category != "") {
-			$where = " WHERE category=':category' ";
+			$where = " WHERE category=:category ";
 		} else if ($startGrade!= "") {
 			$where = "WHERE grade >= :startGrade AND grade <= :endGrade";
 		} else {
@@ -21,8 +21,9 @@
 		$sql = "SELECT * FROM projects $where ORDER BY id DESC LIMIT :limit OFFSET :offset";
 		$query = $pdo->prepare($sql);
 		
-		if ($category != "")
+		if ($category != "") {
 			$query->bindParam(':category', $category, PDO::PARAM_STR);
+		}
 		$query->bindParam(':limit', $limit, PDO::PARAM_INT);
 		$query->bindParam(':offset', $offset, PDO::PARAM_INT);
 		
