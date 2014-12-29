@@ -50,14 +50,14 @@
                 require "../login/config/config.php";
                 require "../login/checklogin.php";
                 if(isset($_COOKIE["upload_user"])&&isset($_COOKIE["user_code"])&&checklogin ($db_server, $db_username, $db_password, $db_database, $_COOKIE["upload_user"], $_COOKIE["user_code"])==true) {
-                   echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
-                        <button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+                   echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/logout.php\'"><i class="glyphicon glyphicon-log-out"></i> Log Out</button>';
 
                 }
                 else {
-                    echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/login.php\'">Log in</button>';
+                    echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/login.php\'"><i class="glyphicon glyphicon-log-in"></i> Log in</button>';
                 }
-                ?> 
+                ?>
 
                 </div>
             </div>
@@ -71,10 +71,66 @@
 
         <!-- Page Header -->
         <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Project Gallery
-                    <small>project programming</small>
-                </h1>
+            <div class="col-lg-6">
+                <h1 class="page-header">Project Gallery</h1>
+            </div>
+            <div class="col-lg-6" style="padding-top:50px;padding-right:70px;">
+                <div class="dropdown" style="float:right;">
+                  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <?php
+                    if(!isset($_GET['grade'])){
+                        echo 'All Grades';
+                    }
+                    else{
+                        echo $_GET['grade'];
+                        $gradeDivision=$_GET['grade'];
+                    }
+                    if(isset($_GET['category'])){
+                        $category=$_GET['category'];
+                    }
+                    ?>
+
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=All Grades<?php if(isset($category)){echo '&category='.$category;} ?>">All Grades</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=9-10<?php if(isset($category)){echo '&category='.$category;} ?>">9-10</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?grade=11-12<?php if(isset($category)){echo '&category='.$category;} ?>">11-12</a></li>
+                  </ul>
+                </div>
+                <div class="dropdown" style="float:right;padding-right:10px;">
+                  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+                    <?php
+                    if(!isset($_GET['category'])){
+                        echo 'All Categories';
+                    }
+                    else{
+                        echo $_GET['category'];
+                    }
+                    ?>
+                    <span class="caret"></span>
+                  </button>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=All Categories<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">All Categories</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=3D Modeling<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">3D Modeling</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Animated Graphic Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Animated Graphic Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Case Modification<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Case Modification</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Audio Production<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Audio Production</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Photography<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Photography</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Digital Video Production<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Digital Video Production</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Game Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Game Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Hardware<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Hardware</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Individual Programming Challenge<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Individual Programming Challenge</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Mobile Apps<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Mobile Apps</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Multimedia Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Multimedia Applications</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Animated Graphic Design<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Animated Graphic Design</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Non-Multimedia Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Non-Multimedia Applications</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Project Programming<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Project Programming</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Robotics<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Robotics</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Technology Literacy Challenge<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Technology Literacy Challenge</option></a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="index.php?category=Web 2.0 Internet Applications<?php if(isset($gradeDivision)){echo '&grade='.$gradeDivision;} ?>">Web 2.0 Internet Applications</option></a></li>          
+                  </ul>
+                </div>
             </div>
         </div>
         <!-- /.row -->

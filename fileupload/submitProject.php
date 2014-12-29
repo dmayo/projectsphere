@@ -61,7 +61,7 @@ else{
                 <div style="float:right;">
 
                 <?php
-                echo '<button type="button" class="btn btn-default navbar-btn" style="background-color:#337AB7;color:white;" onclick="window.location.href=\'../login/logout.php\'">Log Out</button>';
+                echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/logout.php\'"><i class="glyphicon glyphicon-log-out"></i> Log Out</button>';
                 ?>
 
                 </div>
