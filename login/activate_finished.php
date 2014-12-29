@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link href="style.css" type="text/css" rel="stylesheet" />
+    <link rel="shortcut icon" href="../login/images/favicon.ico" />
 	<script type="text/javascript" src="phplivex/phplivex.js"></script>
 	<script type="text/javascript" src="jquery/ui/js/jquery-1.3.2.min.js"></script>
 	<script type="text/javascript" src="jquery.history.js"></script>
