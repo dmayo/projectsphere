@@ -89,7 +89,16 @@
 		
 				echo '<div class="col-lg-12">';
         //echo '<p>''</p>';
-        echo '<h3>Authors</h3>David Mayo and Albert Shaw';
+        echo '<h3>Authors</h3>';
+        $numAuthors = count($project['authorNames']);
+        $i=1;
+        foreach($project['authorNames'] as $author){
+            echo $author['firstname'] . ' ' . $author['lastname'];
+            if($i<$numAuthors){
+                echo ', ';
+            }
+            $i++;
+        }
         echo '<h3>Project Description</h3>';
         echo '<p>'.$project['description'].'</p>';
         echo '<h3>Sources</h3>';
