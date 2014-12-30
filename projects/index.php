@@ -211,9 +211,24 @@
 							<h3 style="padding-bottom:0px;margin-bottom:0px;">
 							     <a href="project.php?id='.$project['id'].'">';
 					           echo $project['project_name'];
+
+                            //get grade division
+                           $gradeDivisionLookup = [
+                                "12"=>"11th&12th",
+                                "11"=>"11th&12th",
+                                "10"=>"9th&10th",
+                                "9"=>"9th&10th",
+                                "8"=>"7th&8th",
+                                "7"=>"7th&8th",
+                                "6"=>"5th&6th",
+                                "5"=>"5th&6th",
+                                "4"=>"3rd&4th",
+                                "3"=>"3rd&4th"
+                            ];
+
 					        echo '</a></h3>
                             <p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:#337ab7;"><i>By: David Mayo, Albert Shaw</i></p>
-							<p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:green;"><i>Individual Programming Challenge - 11th&12th</i></p>
+							<p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:green;"><i>'. $project['category'] .' - '.$gradeDivisionLookup[$project['grade']].'</i></p>
                             
                             
                             <p>'.substr($project['description'], 0, 318);
