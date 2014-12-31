@@ -93,7 +93,7 @@
         $numAuthors = count($project['authorNames']);
         $i=1;
         foreach($project['authorNames'] as $author){
-            echo $author['firstname'] . ' ' . $author['lastname'];
+            echo ucwords($author['firstname'] . ' ' . $author['lastname']);
             if($i<$numAuthors){
                 echo ', ';
             }
