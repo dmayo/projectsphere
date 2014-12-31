@@ -224,10 +224,16 @@
                                 "5"=>"5th&6th",
                                 "4"=>"3rd&4th",
                                 "3"=>"3rd&4th"
+								
                             ];
 
 					        echo '</a></h3>
-                            <p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:#337ab7;"><i>By: David Mayo, Albert Shaw</i></p>
+                            <p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:#337ab7;"><i>By: '.
+											ucwords($project['authorNames'][0]['firstname'].' ' .$project['authorNames'][0]['lastname']);
+							for ($i=1; $i<count($project['authorNames']); $i++) {
+								echo ', '.ucwords($project['authorNames'][$i]['firstname'].' '.$project['authorNames'][$i]['lastname']); 
+							}
+							echo				'</i></p>
 							<p style="font-family:arial;font-size:14px;padding-bottom:0px;margin-bottom:4px;color:green;"><i>'. $project['category'] .' - '.$gradeDivisionLookup[$project['grade']].'</i></p>
                             
                             
