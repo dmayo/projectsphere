@@ -24,6 +24,7 @@
 		if ($category != "") {
 			$query->bindParam(':category', $category, PDO::PARAM_STR);
 		}
+		
 		$query->bindParam(':limit', $limit, PDO::PARAM_INT);
 		$query->bindParam(':offset', $offset, PDO::PARAM_INT);
 		
@@ -32,7 +33,11 @@
 			$query->bindParam(':endGrade', $endGrade, PDO::PARAM_INT);
 		}
 		$query->execute();
-		return $query->fetchAll(PDO::FETCH_ASSOC);
+		$result = $query->fetchAll(PDO::FETCH_ASSOC);
+		for ($i=0; $i<count($result); $i++) {
+			$result[$i]['authorNames'] = getAuthorsFromIDs($result[$i]['authors']);
+		}
+		return $result;
 	}
 
 	function getNumProjects($category = "", $startGrade = "", $endGrade=""){
@@ -49,7 +54,6 @@
 		} else {
 			$where = "";
 		}
-
 		$pdo = getPDO();
 		$sql = "SELECT COUNT(*) FROM projects $where";
 		$query = $pdo->prepare($sql);
@@ -77,7 +81,6 @@
 		} else {
 			return false;
 		}
-		
 	}
 	
 	function getAuthorsFromIDs($ids) {
