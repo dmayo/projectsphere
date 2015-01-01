@@ -84,6 +84,7 @@ else{
 
         <!-- Projects Row -->
         <div class="row">
+	<!-- Form Submission is handled by javascript function at the bottom -->
 	<form id="project_form" action="submitProject_handler.php" method="post">
         <div class="form-group">
             <label for="projectName">Project Name</label>
@@ -343,8 +344,32 @@ else{
 <!-- The main application script -->
 <script src="js/submitproject.js"></script>
 	
-	<script>
-	</script>
+<script>
+	//Form submit action
+	var frm = $('#project_form');
+    frm.submit(function (ev) {
+        $.ajax({
+            type: frm.attr('method'),
+            url: frm.attr('action'),
+            data: frm.serialize(),
+            success: function (data) {
+                if (data[0]==1) {
+					alert("Project Submitted");
+					document.location.href = "../projects/project.php?id=" + data[1];
+				} else {
+					alert(data[1]);
+				}
+				//} else {
+				//	alert ("Project Submitted Successfully");
+					
+				//}
+				
+            }
+        });
+
+        ev.preventDefault();
+    });
+</script>
 </body>
 </html>
 <?php

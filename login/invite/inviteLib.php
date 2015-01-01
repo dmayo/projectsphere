@@ -1,4 +1,3 @@
-
 <?PHP
 
 require_once __DIR__."/../rndPass.class.php";
