@@ -55,7 +55,8 @@
 
                 }
                 else {
-                    echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/login.php\'"><i class="glyphicon glyphicon-log-in"></i> Log in</button>';
+                    echo '<button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../fileupload/submitProject.php\'"><i class="glyphicon glyphicon-plus"></i> Submit Project</button>
+                        <button type="button" class="btn btn-primary navbar-btn" onclick="window.location.href=\'../login/login.php\'"><i class="glyphicon glyphicon-log-in"></i> Log in</button>';
                 }
                 ?>
 
