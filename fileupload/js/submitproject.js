@@ -36,10 +36,11 @@ $(function () {
 	var onSuccess = function (e, data) {
 		var files = data.result.files;
 		for (var i = 0; i < files.length; ++i) {
-			
-			$('#imageinput').val( function( index, val ) {
-				return val + files[i].url + "<";
-			});
+			if (files[i].url!='undefined') {
+                $('#imageinput').val( function( index, val ) {
+                    return val + files[i].url + "<";
+                });
+            }
 			console.log(files[i]);
 		}
 	}
@@ -50,7 +51,7 @@ $(function () {
 	$('#fileupload').bind('fileuploaddestroyed', onDeleted);
 
 	$('#fileupload').fileupload('option', {
-		maxFileSize: 5000000,
+		maxFileSize: 10000000,
 		acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
 	});
 	
