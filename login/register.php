@@ -172,9 +172,9 @@ function adduser($email, $firstname, $lastname, $user,$pass,$pass1){
 	$mail->Username   = $email_user;  // GMAIL username
 	$mail->Password   = $email_pass;            // GMAIL password
 
-	$mail->From       = "noreply@IntroductoryElectricity.com";
-	$mail->FromName   = "David Mayo";
-	$mail->Subject    = "Introductory Electricity PSet Checker Account Confirmation";
+	$mail->From       = "dmayo2@mit.edu";
+	$mail->FromName   = "Project Sphere";
+	$mail->Subject    = "Project Sphere Account Activation";
 	$mail->AltBody    = "Dear $user,
 
 
@@ -190,7 +190,7 @@ function adduser($email, $firstname, $lastname, $user,$pass,$pass1){
 	$mail->AddAddress($email,$user);
 
 	$mail->IsHTML(true); // send as HTML
-	$mail->AddReplyTo("noreply@IntroductoryElectricity.com","Webmaster");
+	$mail->AddReplyTo("dmayo2@mit.edu","David Mayo");
 
 	if(!$mail->Send()) {
 	  echo "Mailer Error: " . $mail->ErrorInfo;
